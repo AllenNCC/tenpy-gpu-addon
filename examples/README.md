@@ -427,7 +427,7 @@ covering, or a random state) — not the bare product state.
   sweeps than the frozen staggered side; χ=256 converges *cleaner* partly
   because the smaller bond dimension caps entropy growth (so the stop fires),
   not because it is more accurate than a longer-swept χ=512 run.
-- **Engine note — the mixer and dark states.** Stock tenpy's
+- **Engine note — the mixer and dark states. (check if this is correct?)** Stock tenpy's
   `DensityMatrixMixer` *can* escape the `[0]` dark state (its perturbation
   builds from partial, left-only-contracted H-terms that are nonzero even when
   $H|\psi\rangle=0$); this addon's simplified density-matrix mixer produces a
@@ -437,3 +437,11 @@ covering, or a random state) — not the bare product state.
   classical covering instead. The `dropin` engine (`TorchTwoSiteDMRGEngine`)
   uses tenpy's mixer verbatim, so routing a dark anchor through it would
   escape, if a `[0]`-anchor protocol is ever required.
+- **Cold-start caveat (shared with tenpy, not specific to this mixer).** A
+density-matrix mixer perturbs ρ by `h·θ` terms, so if the initial product state
+is a *dark state* of the off-diagonal Hamiltonian (`h·θ = 0`) there is nothing to
+inject and *no* such mixer can escape it. The QDM's natural product states are
+dark states of the plaquette kinetic term, so a cold start stalls at E=0 with chi
+pinned at 1 — in stock tenpy exactly as here. Seed with a warm start (a couple of
+stock tenpy sweeps, or a random-bond-dimension MPS) as `examples/run_qdm.py`
+does. This is a property of the model, not the engine.

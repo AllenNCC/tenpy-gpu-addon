@@ -102,9 +102,8 @@ Jordan–Wigner string raises — use tenpy's CPU path for those).
 
 ## Example: the square-lattice quantum dimer model
 
-`examples/qdm_model.py` is a complete, realistic model — the 4-state
-vertex-site square-lattice QDM on a cylinder (plaquette ring-exchange via
-two-site couplings, perfect-matching constraint via a soft blockade) — and
+`examples/qdm_model.py` is the square-lattice QDM on a cylinder (plaquette ring-exchange via
+two-site couplings, gauge constraint via a soft blockade) — and
 `examples/run_qdm.py` runs the whole pipeline on it:
 
 ```bash
@@ -117,7 +116,7 @@ outside. Use it as a template for wiring up your own model.
 
 ## Validation
 
-`pytest tests -v` — the trust chain is: **stock CPU tenpy is the oracle.**
+`pytest tests -v`
 
 - `run_dmrg_torch` converged energies match stock tenpy to ~1e-10 relative
   with wavefunction overlap at ~1e-8 (TFI chain; QDM example energy to 1e-8).
@@ -170,7 +169,7 @@ does the rest.
 `run_dmrg_torch`'s mixer is a density-matrix mixer in the sense of White
 (2005) — the same family as tenpy's `DensityMatrixMixer` (tenpy's default for
 two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
-`disable_after=15`). It differs from stock tenpy in three ways; only the drop-in
+`disable_after=15`). The drop-in
 `TorchTwoSiteDMRGEngine` uses tenpy's mixer verbatim.
 
 1. **Perturbation formula.** tenpy builds the mixed density matrix as a single
@@ -178,7 +177,7 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
    reproduces the true ρ), the "identity-right" channel zeroed, and every other
    ("operator-in-flight") channel at the amplitude `a`, un-normalized. The addon
    instead forms the true ρ = θθ† and *adds* a trace-normalized perturbation
-   summed over **all** MPO channels:
+   summed over all MPO channels:
 
    $$
    \rho_L \longrightarrow \theta\theta^\dagger + \frac{a}{\mathrm{Tr}}\sum_w (L W \theta)_w^{\dagger} (L W \theta)_w^\dagger
@@ -214,15 +213,6 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
    tenpy. (Benchmark: `bench/RESULTS.md` § "GPU truncation routes through
    rho-eigh".)
 
-**Cold-start caveat (shared with tenpy, not specific to this mixer).** A
-density-matrix mixer perturbs ρ by `h·θ` terms, so if the initial product state
-is a *dark state* of the off-diagonal Hamiltonian (`h·θ = 0`) there is nothing to
-inject and *no* such mixer can escape it. The QDM's natural product states are
-dark states of the plaquette kinetic term, so a cold start stalls at E=0 with chi
-pinned at 1 — in stock tenpy exactly as here. Seed with a warm start (a couple of
-stock tenpy sweeps, or a random-bond-dimension MPS) as `examples/run_qdm.py`
-does. This is a property of the model, not the engine.
-
 ## Layout
 
 - `tenpy_gpu_addon/dense.py` — tenpy MPO/MPS ↔ dense tensors (public API only)
@@ -231,8 +221,7 @@ does. This is a property of the model, not the engine.
 - `tenpy_gpu_addon/measure.py` — `DeviceMPS` GPU measurement
 - `examples/` — the QDM model + runnable demo
 - `tests/` — the validation suite described above
-- `docs/lanczos-stability.md` — why the inner Lanczos mirrors tenpy's guards
-  exactly (read before touching `_lanczos`)
+- `bench/` — timing benchmarks
 
 ## License
 
