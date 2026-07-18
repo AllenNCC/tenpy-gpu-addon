@@ -180,7 +180,9 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
    instead forms the true ρ = θθ† and *adds* a trace-normalized perturbation
    summed over **all** MPO channels:
 
-   $$\rho_L \;\longrightarrow\; \theta\theta^\dagger \;+\; \frac{a}{\mathrm{Tr}}\sum_w (L W \theta)_w^{\vphantom{\dagger}} (L W \theta)_w^\dagger$$
+   $$
+   \rho_L \longrightarrow \theta\theta^\dagger + \frac{a}{\mathrm{Tr}}\sum_w (L W \theta)_w^{\dagger} (L W \theta)_w^\dagger
+   $$
 
    Two consequences: (a) it perturbs along a *superset* of directions — it keeps
    the identity-right channel tenpy drops; and (b) because the perturbation is
