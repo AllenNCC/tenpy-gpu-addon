@@ -25,7 +25,7 @@ Install the package either from a clone of this
 repository:
 
 ```bash
-git clone https://github.com/<user>/tenpy-gpu-addon
+git clone https://github.com/AllenNCC/tenpy-gpu-addon
 
 cd tenpy-gpu-addon
 
