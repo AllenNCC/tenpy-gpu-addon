@@ -32,7 +32,7 @@ of coverings with a kinetic (ring-exchange) term and a diagonal (potential)
 term, plaquette by plaquette:
 
 $$
-H = -t \sum_{\square} \Big( |{=}\rangle\langle{\|}| + |{\|}\rangle\langle{=}|  \Big) + V \sum_{\square} \Big(  |{=}\rangle\langle{=}| + |{\|}\rangle\langle{\|}|  \Big)
+H = -t \sum_{\square} \Big( |{=}\rangle\langle{\||}| + |{\||}\rangle\langle{=}|  \Big) + V \sum_{\square} \Big(  |{=}\rangle\langle{=}| + |{\||}\rangle\langle{\||}|  \Big)
 $$
 
 - **Kinetic, $-t$:** the plaquette *flip*. On any plaquette carrying two
