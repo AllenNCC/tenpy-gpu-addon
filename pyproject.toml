@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tenpy-gpu-addon"
+version = "0.1.0"
+description = "GPU-accelerated DMRG and MPS measurement for TeNPy (PyTorch backends, no TeNPy modifications)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["DMRG", "tensor networks", "TeNPy", "GPU", "PyTorch", "MPS"]
+dependencies = [
+    "numpy",
+    "physics-tenpy>=1.0",
+    "torch",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["tenpy_gpu_addon*"]

@@ -1,0 +1,46 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                        aten::tensordot         0.09%      61.349ms         1.57%        1.021s     115.735us       0.000us         0.00%       51.587s       5.847ms          8823  
+                                               aten::mm         0.52%     335.780ms         0.73%     474.736ms      35.665us       46.838s        74.50%       46.888s       3.522ms         13311  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_6...         0.00%       0.000us         0.00%       0.000us       0.000us       28.393s        45.16%       28.393s       7.247ms          3918  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_1...         0.00%       0.000us         0.00%       0.000us       0.000us       12.076s        19.21%       12.076s       4.045ms          2985  
+                                            aten::copy_         0.19%     124.231ms         0.63%     411.814ms      23.228us        9.766s        15.53%        9.766s     550.838us         17729  
+void at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us        9.629s        15.31%        9.629s     649.863us         14817  
+                                          aten::reshape         0.08%      52.177ms         0.69%     446.832ms      14.339us       0.000us         0.00%        9.620s     308.715us         31161  
+                                            aten::clone         0.05%      35.500ms         0.57%     368.949ms      24.900us       0.000us         0.00%        9.620s     649.245us         14817  
+                                           aten::matmul         0.04%      28.830ms         0.60%     388.035ms      36.579us       0.000us         0.00%        6.010s     566.514us         10608  
+                                      aten::linalg_eigh         0.00%     387.710us         7.33%        4.767s      46.740ms       0.000us         0.00%        4.720s      46.278ms           102  
+                                     aten::_linalg_eigh         0.41%     268.654ms         7.33%        4.767s      46.736ms        4.438s         7.06%        4.720s      46.278ms           102  
+sm80_xmma_gemm_f64f64_f64f64_f64_tn_n_tilesize32x64x...         0.00%       0.000us         0.00%       0.000us       0.000us        3.761s         5.98%        3.761s      18.996ms           198  
+void sytrd4_gpu<sytrd_params<double, 32, 8, 2048, 32...         0.00%       0.000us         0.00%       0.000us       0.000us        2.412s         3.84%        2.412s       1.142ms          2112  
+                                               aten::mv         0.02%      15.750ms         0.24%     154.196ms      37.793us       0.000us         0.00%        1.230s     301.458us          4080  
+                                           aten::addmv_         0.12%      75.907ms         0.19%     124.376ms      30.484us        1.229s         1.96%        1.230s     301.458us          4080  
+void gemv2N_kernel<int, int, double, double, double,...         0.00%       0.000us         0.00%       0.000us       0.000us        1.176s         1.87%        1.176s     432.839us          2717  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     861.941ms         1.37%     861.941ms     595.263us          1448  
+void sytrd4_gpu<sytrd_params<double, 32, 8, 1024, 32...         0.00%       0.000us         0.00%       0.000us       0.000us     557.254ms         0.89%     557.254ms     454.530us          1226  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_6...         0.00%       0.000us         0.00%       0.000us       0.000us     469.036ms         0.75%     469.036ms       3.876ms           121  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_6...         0.00%       0.000us         0.00%       0.000us       0.000us     430.488ms         0.68%     430.488ms     190.313us          2262  
+                                  Lazy Function Loading         0.01%       4.368ms         0.01%       4.368ms      36.708us     287.331ms         0.46%     287.331ms       2.415ms           119  
+                            ampere_dgemm_64x64_lower_nt         0.00%       0.000us         0.00%       0.000us       0.000us     283.089ms         0.45%     283.089ms      32.933us          8596  
+void at::native::vectorized_elementwise_kernel<2, at...         0.00%       0.000us         0.00%       0.000us       0.000us     282.403ms         0.45%     282.403ms      67.528us          4182  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_1...         0.00%       0.000us         0.00%       0.000us       0.000us     276.937ms         0.44%     276.937ms       4.073ms            68  
+                                       cudaLaunchKernel         0.51%     334.512ms         1.94%        1.265s      18.171us       0.000us         0.00%     272.746ms       3.918us         69615  
+                                              aten::sub         0.08%      48.819ms         0.21%     134.838ms      33.049us     272.231ms         0.43%     272.236ms      66.725us          4080  
+void sytrd4_gpu<sytrd_params<double, 32, 8, 512, 32,...         0.00%       0.000us         0.00%       0.000us       0.000us     238.719ms         0.38%     238.719ms     248.665us           960  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     195.020ms         0.31%     195.020ms     167.543us          1164  
+void laed2_par<stedc_params_<double2, double, 8, 102...         0.00%       0.000us         0.00%       0.000us       0.000us     189.938ms         0.30%     189.938ms       1.319ms           144  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_3...         0.00%       0.000us         0.00%       0.000us       0.000us     143.094ms         0.23%     143.094ms     148.438us           964  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     134.607ms         0.21%     134.607ms     147.596us           912  
+                                              aten::dot         0.04%      27.092ms         0.10%      64.168ms      31.455us     104.348ms         0.17%     104.662ms      51.305us          2040  
+                         Memcpy DtoD (Device -> Device)         0.00%       0.000us         0.00%       0.000us       0.000us     101.440ms         0.16%     101.440ms      45.205us          2244  
+void dot_kernel<double, 128, 0, cublasDotParams<cubl...         0.00%       0.000us         0.00%       0.000us       0.000us      98.473ms         0.16%      98.473ms      48.271us          2040  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_1...         0.00%       0.000us         0.00%       0.000us       0.000us      96.289ms         0.15%      96.289ms      10.699ms             9  
+void transpose<sytrd_params<double, 32, 8, 512, 32, ...         0.00%       0.000us         0.00%       0.000us       0.000us      95.577ms         0.15%      95.577ms      22.681us          4214  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_3...         0.00%       0.000us         0.00%       0.000us       0.000us      93.343ms         0.15%      93.343ms     188.571us           495  
+                                              aten::div         0.09%      55.838ms         0.21%     139.277ms      54.618us      90.299ms         0.14%      90.310ms      35.416us          2550  
+                               aten::linalg_vector_norm         0.09%      60.884ms         0.44%     288.868ms     118.002us      82.684ms         0.13%      82.766ms      33.810us          2448  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us      80.794ms         0.13%      80.794ms      33.004us          2448  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 65.051s
+Self CUDA time total: 62.873s

@@ -1,0 +1,192 @@
+node: holygpu7c26202.rc.fas.harvard.edu
+NVIDIA A100-SXM4-40GB, 40960 MiB
+QDM phase diagram: 6x12, chi=256, V in [-1.0, 2.5] (36 pts), device=cuda
+  [anchor: classical seed, E_cl=-33.0000]
+  fwd param= -1.0000  E0=   -49.0416  m1sq=0.6127  m3sq=0.0000  density=0.2609  chi= 256  sweeps=23  [214s]
+  fwd param= -0.9000  E0=   -46.1619  m1sq=0.5838  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [455s]
+  fwd param= -0.8000  E0=   -43.3309  m1sq=0.5547  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [694s]
+  fwd param= -0.7000  E0=   -40.5483  m1sq=0.5260  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [933s]
+  fwd param= -0.6000  E0=   -37.8130  m1sq=0.4985  m3sq=0.0000  density=0.2609  chi= 256  sweeps=18  [1162s]
+  fwd param= -0.5000  E0=   -35.1235  m1sq=0.4724  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [1404s]
+  fwd param= -0.4000  E0=   -32.4781  m1sq=0.4478  m3sq=0.0000  density=0.2609  chi= 256  sweeps=18  [1634s]
+  fwd param= -0.3000  E0=   -29.8749  m1sq=0.4246  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [1878s]
+  fwd param= -0.2000  E0=   -27.3127  m1sq=0.4027  m3sq=0.0000  density=0.2609  chi= 256  sweeps=17  [2095s]
+  fwd param= -0.1000  E0=   -24.7906  m1sq=0.3816  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [2340s]
+  fwd param=  0.0000  E0=   -22.3080  m1sq=0.3612  m3sq=0.0000  density=0.2609  chi= 256  sweeps=19  [2585s]
+  fwd param=  0.1000  E0=   -19.8649  m1sq=0.3412  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [2843s]
+  fwd param=  0.2000  E0=   -17.4618  m1sq=0.3213  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [3099s]
+  fwd param=  0.3000  E0=   -15.0996  m1sq=0.3013  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [3358s]
+  fwd param=  0.4000  E0=   -12.7797  m1sq=0.2811  m3sq=0.0000  density=0.2609  chi= 256  sweeps=21  [3624s]
+  fwd param=  0.5000  E0=   -10.5042  m1sq=0.2603  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [3881s]
+  fwd param=  0.6000  E0=    -8.2761  m1sq=0.2387  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [4140s]
+  fwd param=  0.7000  E0=    -6.0998  m1sq=0.2156  m3sq=0.0000  density=0.2609  chi= 256  sweeps=20  [4399s]
+  fwd param=  0.8000  E0=    -3.9822  m1sq=0.1898  m3sq=0.0000  density=0.2609  chi= 256  sweeps=23  [4688s]
+  fwd param=  0.9000  E0=    -1.9364  m1sq=0.1581  m3sq=0.0000  density=0.2609  chi= 256  sweeps=28  [5033s]
+  fwd param=  1.0000  E0=     0.0000  m1sq=0.1000  m3sq=0.0000  density=0.2609  chi= 256  sweeps=31  [5407s]
+  fwd param=  1.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi= 256  sweeps=37  [5799s]
+  fwd param=  1.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=  10  sweeps=17  [5806s]
+  fwd param=  1.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   4  sweeps=17  [5809s]
+  fwd param=  1.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5812s]
+  fwd param=  1.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5815s]
+  fwd param=  1.6000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5817s]
+  fwd param=  1.7000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5820s]
+  fwd param=  1.8000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   2  sweeps=17  [5823s]
+  fwd param=  1.9000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5825s]
+  fwd param=  2.0000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   2  sweeps=17  [5828s]
+  fwd param=  2.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5831s]
+  fwd param=  2.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5833s]
+  fwd param=  2.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   2  sweeps=17  [5836s]
+  fwd param=  2.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5839s]
+  fwd param=  2.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5842s]
+  [anchor: classical seed, E_cl=0.0000]
+  bwd param=  2.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [3s]
+  bwd param=  2.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [5s]
+  bwd param=  2.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [8s]
+  bwd param=  2.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [10s]
+  bwd param=  2.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [13s]
+  bwd param=  2.0000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [16s]
+  bwd param=  1.9000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [18s]
+  bwd param=  1.8000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [21s]
+  bwd param=  1.7000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [23s]
+  bwd param=  1.6000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [26s]
+  bwd param=  1.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [28s]
+  bwd param=  1.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [31s]
+  bwd param=  1.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [34s]
+  bwd param=  1.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [36s]
+  bwd param=  1.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [39s]
+  bwd param=  1.0000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [41s]
+  bwd param=  0.9000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [44s]
+  bwd param=  0.8000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [46s]
+  bwd param=  0.7000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [49s]
+  bwd param=  0.6000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [52s]
+  bwd param=  0.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [54s]
+  bwd param=  0.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [57s]
+  bwd param=  0.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [59s]
+  bwd param=  0.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [62s]
+  bwd param=  0.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [64s]
+  bwd param=  0.0000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [67s]
+  bwd param= -0.1000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [70s]
+  bwd param= -0.2000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [72s]
+  bwd param= -0.3000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [75s]
+  bwd param= -0.4000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [77s]
+  bwd param= -0.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [80s]
+  bwd param= -0.6000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [83s]
+  bwd param= -0.7000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [85s]
+  bwd param= -0.8000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [88s]
+  bwd param= -0.9000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [90s]
+  bwd param= -1.0000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2609  chi=   1  sweeps=17  [93s]
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/phase_diagram_6_12/phase_diagram.npz
+
+ V/t      E(min)   winner     m1^2     m3^2
+ -1.00    -49.0416  forward   0.6127  0.0000
+ -0.90    -46.1619  forward   0.5838  0.0000
+ -0.80    -43.3309  forward   0.5547  0.0000
+ -0.70    -40.5483  forward   0.5260  0.0000
+ -0.60    -37.8130  forward   0.4985  0.0000
+ -0.50    -35.1235  forward   0.4724  0.0000
+ -0.40    -32.4781  forward   0.4478  0.0000
+ -0.30    -29.8749  forward   0.4246  0.0000
+ -0.20    -27.3127  forward   0.4027  0.0000
+ -0.10    -24.7906  forward   0.3816  0.0000
+  0.00    -22.3080  forward   0.3612  0.0000
+  0.10    -19.8649  forward   0.3412  0.0000
+  0.20    -17.4618  forward   0.3213  0.0000
+  0.30    -15.0996  forward   0.3013  0.0000
+  0.40    -12.7797  forward   0.2811  0.0000
+  0.50    -10.5042  forward   0.2603  0.0000
+  0.60     -8.2761  forward   0.2387  0.0000
+  0.70     -6.0998  forward   0.2156  0.0000
+  0.80     -3.9822  forward   0.1898  0.0000
+  0.90     -1.9364  forward   0.1581  0.0000
+  1.00      0.0000  backward  0.0000  1.0000
+  1.10      0.0000  backward  0.0000  1.0000
+  1.20      0.0000  backward  0.0000  1.0000
+  1.30      0.0000  backward  0.0000  1.0000
+  1.40      0.0000  backward  0.0000  1.0000
+  1.50      0.0000  backward  0.0000  1.0000
+  1.60      0.0000  backward  0.0000  1.0000
+  1.70      0.0000  backward  0.0000  1.0000
+  1.80      0.0000  backward  0.0000  1.0000
+  1.90      0.0000  backward  0.0000  1.0000
+  2.00      0.0000  backward  0.0000  1.0000
+  2.10      0.0000  backward  0.0000  1.0000
+  2.20      0.0000  backward  0.0000  1.0000
+  2.30      0.0000  backward  0.0000  1.0000
+  2.40      0.0000  backward  0.0000  1.0000
+  2.50      0.0000  backward  0.0000  1.0000
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/phase_diagram_6_12/phase_diagram.png
+measuring 72 states from /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/phase_diagram_6_12 (6x12, device=cuda)
+  bwd_00  V/t=+2.500  C_HH(1)=+0.00000
+  bwd_01  V/t=+2.400  C_HH(1)=+0.00000
+  bwd_02  V/t=+2.300  C_HH(1)=+0.00000
+  bwd_03  V/t=+2.200  C_HH(1)=+0.00000
+  bwd_04  V/t=+2.100  C_HH(1)=+0.00000
+  bwd_05  V/t=+2.000  C_HH(1)=+0.00000
+  bwd_06  V/t=+1.900  C_HH(1)=+0.00000
+  bwd_07  V/t=+1.800  C_HH(1)=+0.00000
+  bwd_08  V/t=+1.700  C_HH(1)=+0.00000
+  bwd_09  V/t=+1.600  C_HH(1)=+0.00000
+  bwd_10  V/t=+1.500  C_HH(1)=+0.00000
+  bwd_11  V/t=+1.400  C_HH(1)=+0.00000
+  bwd_12  V/t=+1.300  C_HH(1)=+0.00000
+  bwd_13  V/t=+1.200  C_HH(1)=+0.00000
+  bwd_14  V/t=+1.100  C_HH(1)=+0.00000
+  bwd_15  V/t=+1.000  C_HH(1)=+0.00000
+  bwd_16  V/t=+0.900  C_HH(1)=+0.00000
+  bwd_17  V/t=+0.800  C_HH(1)=+0.00000
+  bwd_18  V/t=+0.700  C_HH(1)=+0.00000
+  bwd_19  V/t=+0.600  C_HH(1)=+0.00000
+  bwd_20  V/t=+0.500  C_HH(1)=+0.00000
+  bwd_21  V/t=+0.400  C_HH(1)=+0.00000
+  bwd_22  V/t=+0.300  C_HH(1)=+0.00000
+  bwd_23  V/t=+0.200  C_HH(1)=+0.00000
+  bwd_24  V/t=+0.100  C_HH(1)=+0.00000
+  bwd_25  V/t=+0.000  C_HH(1)=+0.00000
+  bwd_26  V/t=-0.100  C_HH(1)=+0.00000
+  bwd_27  V/t=-0.200  C_HH(1)=+0.00000
+  bwd_28  V/t=-0.300  C_HH(1)=+0.00000
+  bwd_29  V/t=-0.400  C_HH(1)=+0.00000
+  bwd_30  V/t=-0.500  C_HH(1)=+0.00000
+  bwd_31  V/t=-0.600  C_HH(1)=+0.00000
+  bwd_32  V/t=-0.700  C_HH(1)=+0.00000
+  bwd_33  V/t=-0.800  C_HH(1)=+0.00000
+  bwd_34  V/t=-0.900  C_HH(1)=+0.00000
+  bwd_35  V/t=-1.000  C_HH(1)=+0.00000
+  fwd_00  V/t=-1.000  C_HH(1)=+0.01022
+  fwd_01  V/t=-0.900  C_HH(1)=+0.01225
+  fwd_02  V/t=-0.800  C_HH(1)=+0.01448
+  fwd_03  V/t=-0.700  C_HH(1)=+0.01675
+  fwd_04  V/t=-0.600  C_HH(1)=+0.01888
+  fwd_05  V/t=-0.500  C_HH(1)=+0.02071
+  fwd_06  V/t=-0.400  C_HH(1)=+0.02209
+  fwd_07  V/t=-0.300  C_HH(1)=+0.02296
+  fwd_08  V/t=-0.200  C_HH(1)=+0.02330
+  fwd_09  V/t=-0.100  C_HH(1)=+0.02317
+  fwd_10  V/t=+0.000  C_HH(1)=+0.02263
+  fwd_11  V/t=+0.100  C_HH(1)=+0.02179
+  fwd_12  V/t=+0.200  C_HH(1)=+0.02076
+  fwd_13  V/t=+0.300  C_HH(1)=+0.01965
+  fwd_14  V/t=+0.400  C_HH(1)=+0.01863
+  fwd_15  V/t=+0.500  C_HH(1)=+0.01787
+  fwd_16  V/t=+0.600  C_HH(1)=+0.01762
+  fwd_17  V/t=+0.700  C_HH(1)=+0.01832
+  fwd_18  V/t=+0.800  C_HH(1)=+0.02084
+  fwd_19  V/t=+0.900  C_HH(1)=+0.02785
+  fwd_20  V/t=+1.000  C_HH(1)=+0.05651
+  fwd_21  V/t=+1.100  C_HH(1)=-0.00000
+  fwd_22  V/t=+1.200  C_HH(1)=+0.00000
+  fwd_23  V/t=+1.300  C_HH(1)=+0.00000
+  fwd_24  V/t=+1.400  C_HH(1)=+0.00000
+  fwd_25  V/t=+1.500  C_HH(1)=+0.00000
+  fwd_26  V/t=+1.600  C_HH(1)=+0.00000
+  fwd_27  V/t=+1.700  C_HH(1)=+0.00000
+  fwd_28  V/t=+1.800  C_HH(1)=+0.00000
+  fwd_29  V/t=+1.900  C_HH(1)=+0.00000
+  fwd_30  V/t=+2.000  C_HH(1)=+0.00000
+  fwd_31  V/t=+2.100  C_HH(1)=+0.00000
+  fwd_32  V/t=+2.200  C_HH(1)=+0.00000
+  fwd_33  V/t=+2.300  C_HH(1)=+0.00000
+  fwd_34  V/t=+2.400  C_HH(1)=+0.00000
+  fwd_35  V/t=+2.500  C_HH(1)=+0.00000
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/phase_diagram_6_12/dimer_corr_all.npz
+ALL DONE

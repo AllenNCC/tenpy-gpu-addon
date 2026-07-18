@@ -1,0 +1,132 @@
+node: holygpu8a22205.rc.fas.harvard.edu
+NVIDIA A100-SXM4-80GB, 81920 MiB, 575.57.08
+=== torch/cuda chi scan (+observables) ===
+{'host': 'holygpu8a22205.rc.fas.harvard.edu', 'engine': 'torch', 'threads': None, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA A100-SXM4-80GB', 'tenpy': '1.1.0'}
+=== engine=torch chi=128 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 64, 16, 4]
+  sweep 1: E=256.5642901633  chi=128  S_mid=1.331252  trunc=8.25e-05  [0.95s]
+  sweep 2: E=165.3513372675  chi=128  S_mid=1.552257  trunc=2.33e-06  [0.79s]
+  sweep 3: E=88.4749443254  chi=128  S_mid=1.689881  trunc=4.80e-05  [0.79s]
+  sweep 4: E=-8.3866707899  chi=128  S_mid=2.184546  trunc=1.59e-04  [0.79s]
+  sweep 5: E=-10.3752552109  chi=128  S_mid=2.527451  trunc=2.81e-06  [0.79s]
+  sweep 6: E=-10.4376645359  chi=128  S_mid=2.501417  trunc=5.08e-08  [0.79s]
+  sweep 1:    0.95s  chi=128  E=256.56429016
+  sweep 2:    0.79s  chi=128  E=165.35133727
+  sweep 3:    0.79s  chi=128  E=88.47494433
+  sweep 4:    0.79s  chi=128  E=-8.38667079
+  sweep 5:    0.79s  chi=128  E=-10.37525521
+  sweep 6:    0.79s  chi=128  E=-10.43766454
+  t/sweep (last half) = 0.79s   chi reached = 128   [5.4s total]
+  measurement (DeviceMPS-cuda): structure factors 0.49s  density 0.01s
+=== engine=torch chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1: E=262.6846417028  chi=256  S_mid=1.422680  trunc=6.07e-05  [2.22s]
+  sweep 2: E=179.9175692083  chi=256  S_mid=1.702817  trunc=4.06e-06  [2.20s]
+  sweep 3: E=153.0905005322  chi=256  S_mid=1.795359  trunc=9.22e-07  [2.19s]
+  sweep 4: E=77.3275396742  chi=256  S_mid=1.899649  trunc=4.20e-05  [2.21s]
+  sweep 5: E=49.7219066971  chi=256  S_mid=1.645751  trunc=7.71e-07  [2.21s]
+  sweep 6: E=40.0645375889  chi=256  S_mid=1.572566  trunc=1.23e-07  [2.25s]
+  sweep 1:    2.22s  chi=256  E=262.68464170
+  sweep 2:    2.20s  chi=256  E=179.91756921
+  sweep 3:    2.19s  chi=256  E=153.09050053
+  sweep 4:    2.21s  chi=256  E=77.32753967
+  sweep 5:    2.21s  chi=256  E=49.72190670
+  sweep 6:    2.25s  chi=256  E=40.06453759
+  t/sweep (last half) = 2.22s   chi reached = 256   [14.1s total]
+  measurement (DeviceMPS-cuda): structure factors 0.52s  density 0.01s
+=== engine=torch chi=512 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 512, 512, 512, 512, 512, 512, 512, 512, 512, 256, 64, 16, 4]
+  sweep 1: E=265.6115761901  chi=512  S_mid=2.274761  trunc=3.43e-05  [8.75s]
+  sweep 2: E=180.3838816567  chi=512  S_mid=2.538810  trunc=1.13e-06  [8.72s]
+  sweep 3: E=157.0590332446  chi=512  S_mid=2.695515  trunc=4.95e-07  [8.71s]
+  sweep 4: E=135.3231079589  chi=512  S_mid=2.797444  trunc=1.03e-06  [8.72s]
+  sweep 5: E=113.2334810553  chi=512  S_mid=2.940583  trunc=8.41e-07  [8.74s]
+  sweep 6: E=96.1070886915  chi=512  S_mid=3.042529  trunc=4.60e-07  [8.74s]
+  sweep 1:    8.75s  chi=512  E=265.61157619
+  sweep 2:    8.72s  chi=512  E=180.38388166
+  sweep 3:    8.71s  chi=512  E=157.05903324
+  sweep 4:    8.72s  chi=512  E=135.32310796
+  sweep 5:    8.74s  chi=512  E=113.23348106
+  sweep 6:    8.74s  chi=512  E=96.10708869
+  t/sweep (last half) = 8.73s   chi reached = 512   [56.1s total]
+  measurement (DeviceMPS-cuda): structure factors 1.15s  density 0.02s
+=== engine=torch chi=1024 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 256, 64, 16, 4]
+  sweep 1: E=252.8687588548  chi=1024  S_mid=2.550913  trunc=2.61e-05  [48.90s]
+  sweep 2: E=171.6793194536  chi=1024  S_mid=2.677034  trunc=5.60e-07  [48.75s]
+  sweep 3: E=139.4766335204  chi=1024  S_mid=2.814729  trunc=1.45e-06  [48.84s]
+  sweep 4: E=108.2223734002  chi=1024  S_mid=3.008721  trunc=4.71e-07  [48.83s]
+  sweep 5: E=89.4810709957  chi=1024  S_mid=3.059829  trunc=1.54e-07  [48.90s]
+  sweep 6: E=73.0946676877  chi=1024  S_mid=3.104113  trunc=2.30e-07  [48.87s]
+  sweep 1:   48.90s  chi=1024  E=252.86875885
+  sweep 2:   48.75s  chi=1024  E=171.67931945
+  sweep 3:   48.84s  chi=1024  E=139.47663352
+  sweep 4:   48.83s  chi=1024  E=108.22237340
+  sweep 5:   48.90s  chi=1024  E=89.48107100
+  sweep 6:   48.87s  chi=1024  E=73.09466769
+  t/sweep (last half) = 48.87s   chi reached = 1024   [314.4s total]
+  measurement (DeviceMPS-cuda): structure factors 5.03s  density 0.03s
+
+chi      t/sweep   chi_reached
+  128      0.79s  128
+  256      2.22s  256
+  512      8.73s  512
+ 1024     48.87s  1024
+=== torch/cuda chi=2048 ===
+{'host': 'holygpu8a22205.rc.fas.harvard.edu', 'engine': 'torch', 'threads': None, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA A100-SXM4-80GB', 'tenpy': '1.1.0'}
+=== engine=torch chi=2048 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 1024, 2048, 2048, 2048, 2048, 2048, 2048, 2048, 1024, 256, 64, 16, 4]
+  sweep 1: E=301.2149478672  chi=2048  S_mid=4.127759  trunc=4.05e-05  [182.14s]
+  sweep 2: E=260.3528674177  chi=2048  S_mid=4.212506  trunc=6.45e-07  [181.39s]
+  sweep 3: E=242.5206092712  chi=2048  S_mid=4.268423  trunc=1.15e-06  [181.48s]
+  sweep 4: E=228.4077150436  chi=2048  S_mid=4.317976  trunc=6.05e-07  [181.74s]
+  sweep 5: E=210.0729028199  chi=2048  S_mid=4.373635  trunc=1.01e-06  [181.62s]
+  sweep 6: E=180.2663175373  chi=2048  S_mid=4.451071  trunc=1.67e-05  [181.61s]
+  sweep 1:  182.14s  chi=2048  E=301.21494787
+  sweep 2:  181.39s  chi=2048  E=260.35286742
+  sweep 3:  181.48s  chi=2048  E=242.52060927
+  sweep 4:  181.74s  chi=2048  E=228.40771504
+  sweep 5:  181.62s  chi=2048  E=210.07290282
+  sweep 6:  181.61s  chi=2048  E=180.26631754
+  t/sweep (last half) = 181.66s   chi reached = 2048   [1223.3s total]
+
+chi      t/sweep   chi_reached
+ 2048    181.66s  2048
+=== dropin/cuda chi scan ===
+{'host': 'holygpu8a22205.rc.fas.harvard.edu', 'engine': 'dropin', 'threads': None, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA A100-SXM4-80GB', 'tenpy': '1.1.0'}
+=== engine=dropin chi=128 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 64, 16, 4]
+  sweep 1:   12.27s  chi=128  E=22.92692801
+  sweep 2:   11.16s  chi=128  E=-9.32756624
+  sweep 3:   11.03s  chi=128  E=-10.07236394
+  sweep 4:   10.95s  chi=128  E=-10.65501708
+  sweep 5:   10.89s  chi=128  E=-10.72937390
+  sweep 6:   10.84s  chi=128  E=-10.78444808
+  sweep 7:   10.89s  chi=128  E=-10.84062291
+  t/sweep (last half) = 10.89s   chi reached = 128   [78.2s total]
+=== engine=dropin chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1:   57.31s  chi=256  E=92.50682713
+  sweep 2:   53.51s  chi=256  E=-2.12035620
+  sweep 3:   51.95s  chi=256  E=-8.33638619
+  sweep 4:   52.11s  chi=256  E=-9.59035925
+  sweep 5:   50.96s  chi=256  E=-11.03038235
+  sweep 6:   49.35s  chi=256  E=-11.08410564
+  sweep 7:   51.50s  chi=256  E=-11.08684640
+  t/sweep (last half) = 50.98s   chi reached = 256   [367.2s total]
+=== engine=dropin chi=512 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 512, 512, 512, 512, 512, 512, 512, 512, 512, 256, 64, 16, 4]
+  sweep 1:  330.38s  chi=512  E=86.77153284
+  sweep 2:  316.42s  chi=512  E=0.40515315
+  sweep 3:  310.51s  chi=512  E=-4.88303566
+  sweep 4:  309.29s  chi=512  E=-7.16134523
+  sweep 5:  296.90s  chi=512  E=-9.68535177
+  sweep 6:  294.98s  chi=512  E=-10.37674937
+  sweep 7:  294.67s  chi=512  E=-10.76953489
+  t/sweep (last half) = 298.96s   chi reached = 512   [2156.6s total]
+
+chi      t/sweep   chi_reached
+  128     10.89s  128
+  256     50.98s  256
+  512    298.96s  512
+ALL DONE

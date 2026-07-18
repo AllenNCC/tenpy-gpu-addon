@@ -1,0 +1,41 @@
+node: holygpu7c26105.rc.fas.harvard.edu
+NVIDIA A100-SXM4-40GB, 40960 MiB, 575.57.08
+{'host': 'holygpu7c26105.rc.fas.harvard.edu', 'engine': 'torch', 'threads': None, 'sweeps': 3, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA A100-SXM4-40GB MIG 3g.20gb', 'tenpy': '1.1.0'}
+=== engine=torch chi=512 sweeps=3 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 512, 512, 512, 512, 512, 512, 512, 512, 512, 256, 64, 16, 4]
+/n/home05/nchiu/.conda/envs/my_env/lib/python3.14/site-packages/torch/profiler/profiler.py:272: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+USDT:2026-07-18 00:28:45 2927757:2927757 ActivityProfilerController.cpp:415] profiler_start
+  sweep 1: E=268.6053484197  chi=512  S_mid=2.274836  trunc=3.43e-05  [22.33s]
+  sweep 2: E=187.6254956240  chi=512  S_mid=2.566755  trunc=9.27e-07  [21.24s]
+  sweep 3: E=145.8075513722  chi=512  S_mid=2.715557  trunc=1.95e-06  [21.24s]
+USDT:2026-07-18 00:29:55 2927757:2927757 ActivityProfilerController.cpp:455] profiler_stop
+# torch profile (chi=512) -> /n/home05/nchiu/tenpy_gpu_addon/bench/torchprof_chi512.txt; top by cuda_time_total:
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                        aten::tensordot         0.09%      61.349ms         1.57%        1.021s     115.735us       0.000us         0.00%       51.587s       5.847ms          8823  
+                                               aten::mm         0.52%     335.780ms         0.73%     474.736ms      35.665us       46.838s        74.50%       46.888s       3.522ms         13311  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_6...         0.00%       0.000us         0.00%       0.000us       0.000us       28.393s        45.16%       28.393s       7.247ms          3918  
+void cutlass::Kernel2<cutlass_80_tensorop_d884gemm_1...         0.00%       0.000us         0.00%       0.000us       0.000us       12.076s        19.21%       12.076s       4.045ms          2985  
+                                            aten::copy_         0.19%     124.231ms         0.63%     411.814ms      23.228us        9.766s        15.53%        9.766s     550.838us         17729  
+void at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us        9.629s        15.31%        9.629s     649.863us         14817  
+                                          aten::reshape         0.08%      52.177ms         0.69%     446.832ms      14.339us       0.000us         0.00%        9.620s     308.715us         31161  
+                                            aten::clone         0.05%      35.500ms         0.57%     368.949ms      24.900us       0.000us         0.00%        9.620s     649.245us         14817  
+                                           aten::matmul         0.04%      28.830ms         0.60%     388.035ms      36.579us       0.000us         0.00%        6.010s     566.514us         10608  
+                                      aten::linalg_eigh         0.00%     387.710us         7.33%        4.767s      46.740ms       0.000us         0.00%        4.720s      46.278ms           102  
+                                     aten::_linalg_eigh         0.41%     268.654ms         7.33%        4.767s      46.736ms        4.438s         7.06%        4.720s      46.278ms           102  
+sm80_xmma_gemm_f64f64_f64f64_f64_tn_n_tilesize32x64x...         0.00%       0.000us         0.00%       0.000us       0.000us        3.761s         5.98%        3.761s      18.996ms           198  
+void sytrd4_gpu<sytrd_params<double, 32, 8, 2048, 32...         0.00%       0.000us         0.00%       0.000us       0.000us        2.412s         3.84%        2.412s       1.142ms          2112  
+                                               aten::mv         0.02%      15.750ms         0.24%     154.196ms      37.793us       0.000us         0.00%        1.230s     301.458us          4080  
+                                           aten::addmv_         0.12%      75.907ms         0.19%     124.376ms      30.484us        1.229s         1.96%        1.230s     301.458us          4080  
+void gemv2N_kernel<int, int, double, double, double,...         0.00%       0.000us         0.00%       0.000us       0.000us        1.176s         1.87%        1.176s     432.839us          2717  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     861.941ms         1.37%     861.941ms     595.263us          1448  
+  sweep 1:   22.33s  chi=512  E=268.60534842
+  sweep 2:   21.24s  chi=512  E=187.62549562
+  sweep 3:   21.24s  chi=512  E=145.80755137
+  t/sweep (last half) = 21.24s   chi reached = 512   [136.2s total]
+
+chi      t/sweep   chi_reached
+  512     21.24s  512
+ALL DONE

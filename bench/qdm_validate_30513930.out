@@ -1,0 +1,64 @@
+node: holygpu8a22503.rc.fas.harvard.edu
+NVIDIA A100-SXM4-80GB, 81920 MiB, 575.57.08
+============================= test session starts ==============================
+collecting ... collected 27 items
+
+tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_tfi PASSED           [  3%]
+tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_qdm PASSED           [  7%]
+tests/test_engines.py::test_drop_in_engine_vs_tenpy PASSED               [ 11%]
+tests/test_engines.py::test_run_dmrg_torch_cuda PASSED                   [ 14%]
+tests/test_engines.py::test_drop_in_engine_cuda PASSED                   [ 18%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-0.0] PASSED     [ 22%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-05] PASSED   [ 25%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-07] PASSED   [ 29%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-09] PASSED   [ 33%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-0.0] PASSED     [ 37%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-05] PASSED   [ 40%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-07] PASSED   [ 44%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-09] PASSED   [ 48%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-0.0] PASSED     [ 51%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-05] PASSED   [ 55%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-07] PASSED   [ 59%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-09] PASSED   [ 62%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-0.0] PASSED     [ 66%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-05] PASSED   [ 70%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-07] PASSED   [ 74%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-09] PASSED   [ 77%]
+tests/test_measure.py::test_expectation_value PASSED                     [ 81%]
+tests/test_measure.py::test_correlation_function PASSED                  [ 85%]
+tests/test_measure.py::test_correlation_function_subsets PASSED          [ 88%]
+tests/test_measure.py::test_entropy_and_overlap PASSED                   [ 92%]
+tests/test_measure.py::test_observables_ducktype PASSED                  [ 96%]
+tests/test_measure.py::test_gpu_matches_oracle PASSED                    [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_tfi
+PASSED tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_qdm
+PASSED tests/test_engines.py::test_drop_in_engine_vs_tenpy
+PASSED tests/test_engines.py::test_run_dmrg_torch_cuda
+PASSED tests/test_engines.py::test_drop_in_engine_cuda
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[0-0.0]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-05]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-07]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-09]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[1-0.0]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-05]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-07]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-09]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[2-0.0]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-05]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-07]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-09]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[3-0.0]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-05]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-07]
+PASSED tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-09]
+PASSED tests/test_measure.py::test_expectation_value
+PASSED tests/test_measure.py::test_correlation_function
+PASSED tests/test_measure.py::test_correlation_function_subsets
+PASSED tests/test_measure.py::test_entropy_and_overlap
+PASSED tests/test_measure.py::test_observables_ducktype
+PASSED tests/test_measure.py::test_gpu_matches_oracle
+============================= 27 passed in 55.31s ==============================
+ALL DONE

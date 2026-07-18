@@ -1,0 +1,34 @@
+node: holygpu7c26203.rc.fas.harvard.edu
+NVIDIA A100-SXM4-40GB, 40960 MiB
+QDM dimer-dimer correlation: 8x16, chi=256, targets V/t=[-1.0, 0.0, 0.9, 1.0, 1.5], device=cuda
+forward chain (columnar anchor): V/t = [-1.0, -0.75, -0.5, -0.25, 0.0, 0.2, 0.4, 0.6, 0.8, 0.9, 1.0]
+  [anchor: classical seed, E_cl=-60.0000]
+  fwd param= -1.0000  E0=   -87.1661  m1sq=0.6032  m3sq=0.0000  density=0.2581  chi= 256  sweeps=26  [674s]
+  fwd param= -0.7500  E0=   -74.5109  m1sq=0.5273  m3sq=0.0000  density=0.2581  chi= 256  sweeps=17  [1293s]
+  fwd param= -0.5000  E0=   -62.3881  m1sq=0.4539  m3sq=0.0000  density=0.2581  chi= 256  sweeps=18  [1945s]
+  fwd param= -0.2500  E0=   -50.7596  m1sq=0.3908  m3sq=0.0000  density=0.2581  chi= 256  sweeps=20  [2663s]
+  fwd param=  0.0000  E0=   -39.5846  m1sq=0.3361  m3sq=0.0000  density=0.2581  chi= 256  sweeps=20  [3392s]
+  fwd param=  0.2000  E0=   -30.9644  m1sq=0.2949  m3sq=0.0000  density=0.2581  chi= 256  sweeps=31  [4482s]
+  fwd param=  0.4000  E0=   -22.6420  m1sq=0.2532  m3sq=0.0000  density=0.2581  chi= 256  sweeps=32  [5624s]
+  fwd param=  0.6000  E0=   -14.6428  m1sq=0.2094  m3sq=0.0000  density=0.2581  chi= 256  sweeps=32  [6762s]
+  fwd param=  0.8000  E0=    -7.0253  m1sq=0.1595  m3sq=0.0000  density=0.2581  chi= 256  sweeps=23  [7612s]
+  fwd param=  0.9000  E0=    -3.4126  m1sq=0.1253  m3sq=0.0000  density=0.2581  chi= 256  sweeps=51  [9447s]
+  fwd param=  1.0000  E0=     0.0000  m1sq=0.0535  m3sq=0.0112  density=0.2581  chi= 256  sweeps=56  [11497s]
+staggered-anchored point(s): V/t = [1.5]
+  [anchor: classical seed, E_cl=0.0000]
+  stag param=  1.5000  E0=     0.0000  m1sq=0.0000  m3sq=1.0000  density=0.2581  chi=   1  sweeps=17  [5s]
+  V/t=-1.00  HH: C(1)=+0.00851+-0.00001  C(15)=+0.00000+-0.00000
+  V/t=-1.00  VV: C(1)=-0.00114+-0.00000  C(14)=+0.00000+-0.00000
+  V/t=+0.00  HH: C(1)=+0.02203+-0.00068  C(15)=+0.00024+-0.00001
+  V/t=+0.00  VV: C(1)=-0.01273+-0.00004  C(14)=+0.00000+-0.00000
+  V/t=+0.90  HH: C(1)=+0.02296+-0.00015  C(15)=+0.00022+-0.00001
+  V/t=+0.90  VV: C(1)=-0.04889+-0.00006  C(14)=+0.00000+-0.00000
+  V/t=+1.00  HH: C(1)=+0.05769+-0.00000  C(15)=+0.00000+-0.00000
+  V/t=+1.00  VV: C(1)=-0.05814+-0.00000  C(14)=+0.00000+-0.00000
+  V/t=+1.50  HH: C(1)=+0.00000+-0.00000  C(15)=+0.00000+-0.00000
+  V/t=+1.50  VV: C(1)=+0.00000+-0.00000  C(14)=+0.00000+-0.00000
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/dimer_corr_8_16/dimer_corr.npz
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/dimer_corr_8_16/dimer_corr_connected.png
+wrote /n/home05/nchiu/tenpy_gpu_addon/examples/qdm_runs/dimer_corr_8_16/dimer_corr_disconnected.png
+ALL DONE
+ALL DONE

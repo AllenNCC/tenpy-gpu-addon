@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/
+*.npz
+*.h5
+*.pkl
+examples/qdm_runs/phase_diagram_6_12/
+examples/qdm_dimer_corr.py
+examples/qdm_corr_map.py
+examples/qdm_corr_map.ipynb
+examples/rk_decay.py
+examples/rk_map_radial.py
+examples/run_qdm_dimer_corr.sbatch

@@ -1,0 +1,61 @@
+node: holygpu8a12601.rc.fas.harvard.edu
+NVIDIA H200, 143771 MiB, 575.57.08
+=== torch/cuda H200 chi scan (+observables) ===
+{'host': 'holygpu8a12601.rc.fas.harvard.edu', 'engine': 'torch', 'threads': None, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA H200', 'tenpy': '1.1.0'}
+=== engine=torch chi=512 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 512, 512, 512, 512, 512, 512, 512, 512, 512, 256, 64, 16, 4]
+  sweep 1: E=264.6179898900  chi=512  S_mid=2.274708  trunc=3.43e-05  [6.44s]
+  sweep 2: E=176.9262853389  chi=512  S_mid=2.563535  trunc=1.03e-06  [3.56s]
+  sweep 3: E=151.5780953645  chi=512  S_mid=2.716623  trunc=2.56e-06  [3.55s]
+  sweep 4: E=121.5411021009  chi=512  S_mid=2.863173  trunc=1.90e-06  [3.56s]
+  sweep 5: E=90.5969056062  chi=512  S_mid=3.108542  trunc=7.92e-06  [3.57s]
+  sweep 6: E=72.6895193909  chi=512  S_mid=3.208507  trunc=4.33e-07  [3.56s]
+  sweep 1:    6.44s  chi=512  E=264.61798989
+  sweep 2:    3.56s  chi=512  E=176.92628534
+  sweep 3:    3.55s  chi=512  E=151.57809536
+  sweep 4:    3.56s  chi=512  E=121.54110210
+  sweep 5:    3.57s  chi=512  E=90.59690561
+  sweep 6:    3.56s  chi=512  E=72.68951939
+  t/sweep (last half) = 3.57s   chi reached = 512   [30.5s total]
+  measurement (DeviceMPS-cuda): structure factors 0.77s  density 0.01s
+=== engine=torch chi=1024 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 256, 64, 16, 4]
+  sweep 1: E=249.0938813072  chi=1024  S_mid=2.550902  trunc=2.61e-05  [18.71s]
+  sweep 2: E=184.0572327813  chi=1024  S_mid=2.650515  trunc=4.84e-07  [18.68s]
+  sweep 3: E=107.1762183803  chi=1024  S_mid=3.112656  trunc=2.71e-05  [18.77s]
+  sweep 4: E=89.8513937650  chi=1024  S_mid=3.099490  trunc=2.87e-07  [18.85s]
+  sweep 5: E=63.8338085196  chi=1024  S_mid=3.009000  trunc=3.69e-07  [18.90s]
+  sweep 6: E=36.7479250160  chi=1024  S_mid=2.854592  trunc=1.09e-07  [18.78s]
+  sweep 1:   18.71s  chi=1024  E=249.09388131
+  sweep 2:   18.68s  chi=1024  E=184.05723278
+  sweep 3:   18.77s  chi=1024  E=107.17621838
+  sweep 4:   18.85s  chi=1024  E=89.85139376
+  sweep 5:   18.90s  chi=1024  E=63.83380852
+  sweep 6:   18.78s  chi=1024  E=36.74792502
+  t/sweep (last half) = 18.85s   chi reached = 1024   [137.4s total]
+  measurement (DeviceMPS-cuda): structure factors 1.86s  density 0.02s
+
+chi      t/sweep   chi_reached
+  512      3.57s  512
+ 1024     18.85s  1024
+=== torch/cuda H200 chi=2048 ===
+{'host': 'holygpu8a12601.rc.fas.harvard.edu', 'engine': 'torch', 'threads': None, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'gpu': 'NVIDIA H200', 'tenpy': '1.1.0'}
+=== engine=torch chi=2048 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 1024, 2048, 2048, 2048, 2048, 2048, 2048, 2048, 1024, 256, 64, 16, 4]
+  sweep 1: E=302.4670829905  chi=2048  S_mid=4.127759  trunc=4.05e-05  [69.17s]
+  sweep 2: E=242.4689713718  chi=2048  S_mid=4.190560  trunc=5.25e-07  [69.10s]
+  sweep 3: E=219.6923296171  chi=2048  S_mid=4.369348  trunc=2.91e-06  [69.19s]
+  sweep 4: E=170.7560037822  chi=2048  S_mid=4.591095  trunc=4.08e-05  [69.08s]
+  sweep 5: E=98.1999794374  chi=2048  S_mid=4.825959  trunc=4.91e-04  [69.29s]
+  sweep 6: E=87.6507324255  chi=2048  S_mid=4.785319  trunc=1.42e-06  [68.94s]
+  sweep 1:   69.17s  chi=2048  E=302.46708299
+  sweep 2:   69.10s  chi=2048  E=242.46897137
+  sweep 3:   69.19s  chi=2048  E=219.69232962
+  sweep 4:   69.08s  chi=2048  E=170.75600378
+  sweep 5:   69.29s  chi=2048  E=98.19997944
+  sweep 6:   68.94s  chi=2048  E=87.65073243
+  t/sweep (last half) = 69.10s   chi reached = 2048   [559.6s total]
+
+chi      t/sweep   chi_reached
+ 2048     69.10s  2048
+ALL DONE

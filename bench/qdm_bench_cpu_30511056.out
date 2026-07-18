@@ -1,0 +1,106 @@
+node: holy8a24101.rc.fas.harvard.edu  cpus: 16
+Core(s) per socket:  56
+Socket(s):           2
+Model name:          Intel(R) Xeon(R) Platinum 8480CL
+=== threads=1 chi=256 ===
+{'host': 'holy8a24101.rc.fas.harvard.edu', 'engine': 'tenpy', 'threads': 1, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'tenpy': '1.1.0'}
+=== engine=tenpy chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1:  386.26s  chi=256  E=81.31624948
+  sweep 2:  272.98s  chi=256  E=-6.90016992
+  sweep 3:  253.58s  chi=256  E=-9.40689524
+  sweep 4:  317.28s  chi=256  E=-10.20152669
+  sweep 5:  318.82s  chi=256  E=-11.01737540
+  sweep 6:  236.75s  chi=256  E=-11.08263900
+  sweep 7:  269.20s  chi=256  E=-11.08732003
+  t/sweep (last half) = 285.51s   chi reached = 256   [2055.5s total]
+
+chi      t/sweep   chi_reached
+  256    285.51s  256
+=== threads=4 chi=256 ===
+{'host': 'holy8a24101.rc.fas.harvard.edu', 'engine': 'tenpy', 'threads': 4, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'tenpy': '1.1.0'}
+=== engine=tenpy chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1:  170.56s  chi=256  E=76.74111833
+  sweep 2:   98.63s  chi=256  E=-3.22707529
+  sweep 3:  141.21s  chi=256  E=-8.90090974
+  sweep 4:  140.66s  chi=256  E=-10.00571976
+  sweep 5:  139.71s  chi=256  E=-11.07040329
+  sweep 6:  125.39s  chi=256  E=-11.08747712
+  sweep 7:   89.11s  chi=256  E=-11.08751210
+  t/sweep (last half) = 123.72s   chi reached = 256   [905.6s total]
+
+chi      t/sweep   chi_reached
+  256    123.72s  256
+=== threads=16 chi=256 ===
+{'host': 'holy8a24101.rc.fas.harvard.edu', 'engine': 'tenpy', 'threads': 16, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'tenpy': '1.1.0'}
+=== engine=tenpy chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1:  120.54s  chi=256  E=79.56804396
+  sweep 2:   69.17s  chi=256  E=-2.20707033
+  sweep 3:   98.90s  chi=256  E=-8.84830468
+  sweep 4:   97.16s  chi=256  E=-9.87506222
+  sweep 5:   97.79s  chi=256  E=-10.94118908
+  sweep 6:   83.65s  chi=256  E=-10.98428189
+  sweep 7:   96.31s  chi=256  E=-11.06054326
+  t/sweep (last half) = 93.73s   chi reached = 256   [663.8s total]
+
+chi      t/sweep   chi_reached
+  256     93.73s  256
+=== threads=16 chi scan ===
+{'host': 'holy8a24101.rc.fas.harvard.edu', 'engine': 'tenpy', 'threads': 16, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'tenpy': '1.1.0'}
+=== engine=tenpy chi=128 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 64, 16, 4]
+  sweep 1:   51.90s  chi=128  E=54.75280297
+  sweep 2:   40.05s  chi=128  E=-5.98332113
+  sweep 3:   35.47s  chi=128  E=-8.14701140
+  sweep 4:   37.49s  chi=128  E=-9.12561914
+  sweep 5:   39.65s  chi=128  E=-9.44827505
+  sweep 6:   40.54s  chi=128  E=-10.43135751
+  sweep 7:   37.46s  chi=128  E=-10.62247290
+  t/sweep (last half) = 38.79s   chi reached = 128   [282.7s total]
+  measurement (tenpy-cpu): structure factors 4.47s  density 0.03s
+=== engine=tenpy chi=256 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 256, 64, 16, 4]
+  sweep 1:  121.53s  chi=256  E=79.56804396
+  sweep 2:   70.23s  chi=256  E=-2.20707033
+  sweep 3:   99.13s  chi=256  E=-8.84830468
+  sweep 4:   98.28s  chi=256  E=-9.87506222
+  sweep 5:   99.46s  chi=256  E=-10.94118908
+  sweep 6:   85.05s  chi=256  E=-10.98428189
+  sweep 7:   97.91s  chi=256  E=-11.06054326
+  t/sweep (last half) = 95.18s   chi reached = 256   [671.9s total]
+  measurement (tenpy-cpu): structure factors 10.57s  density 0.10s
+=== engine=tenpy chi=512 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 512, 512, 512, 512, 512, 512, 512, 512, 512, 256, 64, 16, 4]
+  sweep 1:  467.32s  chi=512  E=48.16551876
+  sweep 2:  346.03s  chi=512  E=-8.39438451
+  sweep 3:  292.96s  chi=512  E=-9.29355010
+  sweep 4:  335.46s  chi=512  E=-9.70507905
+  sweep 5:  340.23s  chi=512  E=-10.57579873
+  sweep 6:  336.32s  chi=512  E=-10.72451512
+  sweep 7:  336.06s  chi=512  E=-10.77374262
+  t/sweep (last half) = 337.02s   chi reached = 512   [2455.8s total]
+  measurement (tenpy-cpu): structure factors 39.58s  density 0.31s
+
+chi      t/sweep   chi_reached
+  128     38.79s  128
+  256     95.18s  256
+  512    337.02s  512
+=== threads=16 chi=1024 ===
+{'host': 'holy8a24101.rc.fas.harvard.edu', 'engine': 'tenpy', 'threads': 16, 'sweeps': 6, 'workload': {'Lx': 6, 'Ny': 6, 't': 1.0, 'V': 0.0, 'V_blockade': 50.0, 'n_sites': 18, 'mpo_D': 26}, 'torch': '2.12.1+cu129', 'tenpy': '1.1.0'}
+=== engine=tenpy chi=1024 sweeps=6 init=random ===
+  random cold start, initial chi=[4, 16, 64, 256, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 256, 64, 16, 4]
+  sweep 1: 2136.72s  chi=1024  E=42.07825492
+  sweep 2: 1277.69s  chi=1024  E=0.63337409
+  sweep 3: 1672.98s  chi=1024  E=-9.31883344
+  sweep 4: 1658.35s  chi=1024  E=-10.82137648
+  sweep 5: 1321.03s  chi=1024  E=-10.90401779
+  sweep 6: 1640.83s  chi=1024  E=-10.95036777
+  sweep 7: 1641.50s  chi=1024  E=-11.02845663
+  t/sweep (last half) = 1565.43s   chi reached = 1024   [11356.3s total]
+  measurement (tenpy-cpu): structure factors 170.74s  density 1.11s
+
+chi      t/sweep   chi_reached
+ 1024   1565.43s  1024
+ALL DONE

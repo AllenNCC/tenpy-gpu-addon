@@ -1,0 +1,44 @@
+{
+ "env": {
+  "host": "holygpu7c26105.rc.fas.harvard.edu",
+  "engine": "torch",
+  "threads": null,
+  "sweeps": 3,
+  "workload": {
+   "Lx": 6,
+   "Ny": 6,
+   "t": 1.0,
+   "V": 0.0,
+   "V_blockade": 50.0,
+   "n_sites": 18,
+   "mpo_D": 26
+  },
+  "torch": "2.12.1+cu129",
+  "gpu": "NVIDIA A100-SXM4-40GB MIG 3g.20gb",
+  "tenpy": "1.1.0",
+  "init": "random"
+ },
+ "records": [
+  {
+   "chi": 512,
+   "E": 145.8075513721597,
+   "total": 136.18765544891357,
+   "t_sweep_mean_last_half": 21.23939609527588,
+   "t_sweep": [
+    22.325210332870483,
+    21.238390922546387,
+    21.24040126800537
+   ],
+   "chi_per_sweep": [
+    512,
+    512,
+    512
+   ],
+   "E_per_sweep": [
+    268.6053484197141,
+    187.6254956239896,
+    145.8075513721597
+   ]
+  }
+ ]
+}
