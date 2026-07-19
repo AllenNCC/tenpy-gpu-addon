@@ -15,3 +15,8 @@ examples/qdm_corr_map.ipynb
 examples/rk_decay.py
 examples/rk_map_radial.py
 examples/run_qdm_dimer_corr.sbatch
+examples/rydberg_model.py
+examples/rydberg_phase_diagram.py
+examples/run_rydberg_phase_diagram.sbatch
+examples/rydberg_runs/
+examples/corr_readme.md

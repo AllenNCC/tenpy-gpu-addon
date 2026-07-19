@@ -26,10 +26,15 @@ development, carried over verbatim):
   - cold point: chi ramp {0: chi/4, 5: chi/2, 10: chi} with the mixer
     re-armed at each step and disabled after sweep 5, then tenpy-style
     stopping (max_E_err AND max_S_err) with `max_sweeps` as the budget.
-  - seeded point (warm chain link, or classical anchor): start from the seed
-    at FULL chi (no ramp), mixer decaying to zero after sweep 15 — enough
-    fluctuation to relax the seeded branch locally without a low-chi squeeze
-    that would re-select it.
+  - warm chain link: start from the previous ground state at FULL chi (no
+    ramp), mixer decaying to zero after sweep 15 — enough fluctuation to
+    relax the seeded branch locally without a low-chi squeeze that would
+    re-select it.
+  - classical anchor: the seed goes through the staged ramp like a cold
+    point. An A/B on the Rydberg staggered anchor (6x6, Delta=15, chi=256)
+    found this bit-identical to the full-chi schedule and ~4x faster; if a
+    classically seeded anchor ever lands off-branch, revisit (full chi is
+    the one-word change at the classical_seed call below).
   - cold anchor of a warm chain (no classical seed): the staged cold start
     with the larger `max_sweeps_first` budget (default 3x max_sweeps); an
     unconverged anchor would contaminate the whole chain.
