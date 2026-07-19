@@ -67,7 +67,11 @@ def _size_from_dir(run_dir):
 
 
 def plot(run, path, Vc=1.0, size=None, title=None,
-         crit_label=None):
+         crit_label=None, xlabel=r'$V/t$', ylabelL='order parameter',
+         ylabelR='bipartite entanglement entropy', density=None):
+    """`density` (optional): occupation curve overlaid on the left panel.
+    Label/axis kwargs let model-specific callers (e.g. the Rydberg sweep,
+    which is in Delta/Omega) reuse the same figure; defaults are the QDM."""
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -89,12 +93,16 @@ def plot(run, path, Vc=1.0, size=None, title=None,
              ms=6, lw=1.5, label=r'$m_1^2$ columnar')
     axL.plot(V, m3, marker='s', ls='-', color='C3', mfc='white', mec='C3',
              ms=6, lw=1.5, label=r'$m_3^2$ staggered')
-    axL.axvline(Vc, ls=':', color='0.5', lw=1.2)
-    ymax = float(np.nanmax([m1.max(), m3.max()]))
-    axL.text(Vc, 0.55 * ymax, crit_label + '  ', rotation=90, va='center',
-             ha='right', color='0.45', fontsize=10)
-    axL.set_xlabel(r'$V/t$')
-    axL.set_ylabel('order parameter')
+    if density is not None:
+        axL.plot(V, density, ls=':', color='0.5', lw=1.5, label='density')
+    ymax = float(np.nanmax([m1.max(), m3.max()] +
+                           ([density.max()] if density is not None else [])))
+    if Vc is not None:
+        axL.axvline(Vc, ls=':', color='0.5', lw=1.2)
+        axL.text(Vc, 0.55 * ymax, crit_label + '  ', rotation=90, va='center',
+                 ha='right', color='0.45', fontsize=10)
+    axL.set_xlabel(xlabel)
+    axL.set_ylabel(ylabelL)
     axL.set_ylim(-0.03 * ymax, 1.05 * ymax)
     axL.tick_params(which='both', direction='in')
     axL.legend(loc='upper left')
@@ -102,7 +110,8 @@ def plot(run, path, Vc=1.0, size=None, title=None,
     # --- right: mid-chain entropy of the winning state + winner markers ---
     axR.plot(V, S, marker='D', ls='-', color='C2', mfc='white', mec='C2',
              ms=6, lw=1.5)
-    axR.axvline(Vc, ls=':', color='0.5', lw=1.2)
+    if Vc is not None:
+        axR.axvline(Vc, ls=':', color='0.5', lw=1.2)
     Smin, Smax = np.nanmin(S), np.nanmax(S)
     span = (Smax - Smin) or 1.0
     y0 = Smin - 0.14 * span                      # baseline for winner markers
@@ -111,8 +120,8 @@ def plot(run, path, Vc=1.0, size=None, title=None,
                 facecolors='none', edgecolors='0.4', label='winner: fwd')
     axR.scatter(V[bwd], np.full(bwd.sum(), y0), marker='s', s=42,
                 facecolors='none', edgecolors='0.4', label='winner: bwd')
-    axR.set_xlabel(r'$V/t$')
-    axR.set_ylabel('bipartite entanglement entropy')
+    axR.set_xlabel(xlabel)
+    axR.set_ylabel(ylabelR)
     axR.set_ylim(y0 - 0.06 * span, Smax + 0.10 * span)
     axR.tick_params(which='both', direction='in')
     axR.legend(loc='upper left')
