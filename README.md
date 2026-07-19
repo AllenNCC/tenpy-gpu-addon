@@ -17,7 +17,7 @@ loop on an **A100 is 33–51× a 16-core CPU node** (growing with chi; 9.2
 s/sweep at chi=512, 47 s at chi=1024), and an **H200 adds another 2.3–2.6×**
 with no code changes (~118× vs CPU at chi=512). GPU measurement is ~46× per
 state at chi=1024. For the full benchmark behind these numbers, see
-[bench/RESULTS.md](bench/RESULTS.md).
+[bench/README.md](bench/README.md).
 
 ## Install
 
@@ -210,7 +210,7 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
    √ε Schmidt floor (~1e-8) instead of SVD's ~1e-16, with energy/observable
    impact ~1e-16 — the same floor the mixer-on path always carried. On CPU,
    LAPACK SVD is fast and exact, so mixer-off truncation there uses SVD like
-   tenpy. (Benchmark: `bench/RESULTS.md` § "GPU truncation routes through
+   tenpy. (Benchmark: `bench/README.md` § "GPU truncation routes through
    rho-eigh".)
 
 ## Layout

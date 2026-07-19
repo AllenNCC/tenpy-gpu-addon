@@ -117,9 +117,9 @@ def plot(run, path, Vc=1.0, size=None, title=None,
     y0 = Smin - 0.14 * span                      # baseline for winner markers
     fwd, bwd = winner == 'forward', winner == 'backward'
     axR.scatter(V[fwd], np.full(fwd.sum(), y0), marker='o', s=42,
-                facecolors='none', edgecolors='0.4', label='winner: fwd')
+                facecolors='none', edgecolors='0.4', label='fwd')
     axR.scatter(V[bwd], np.full(bwd.sum(), y0), marker='s', s=42,
-                facecolors='none', edgecolors='0.4', label='winner: bwd')
+                facecolors='none', edgecolors='0.4', label='bwd')
     axR.set_xlabel(xlabel)
     axR.set_ylabel(ylabelR)
     axR.set_ylim(y0 - 0.06 * span, Smax + 0.10 * span)

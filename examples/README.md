@@ -175,7 +175,7 @@ python run_qdm.py --Lx 6 --Ny 6 --V 0.0 --chi 512 --device cuda
 product states are *dark states* of the plaquette kinetic term (a plain cold
 start stalls at $E=0$ — a property of the model, not the engine) and a staged
 `chi_list` ramp with the mixer re-armed at each step. Timing/scaling numbers
-for this model are in [`../bench/RESULTS.md`](../bench/RESULTS.md).
+for this model are in [`../bench/README.md`](../bench/README.md).
 
 ---
 

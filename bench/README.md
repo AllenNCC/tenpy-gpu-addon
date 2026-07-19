@@ -197,15 +197,16 @@ what this run is for. Self-CUDA total 62.9 s; breakdown by self CUDA time:
 | `linalg_eigh` (rho-eigh truncation) | **7.1%** (7.5% incl. child kernels) | 102 calls @ 46.3 ms; dominated by `sytrd` tridiagonalization (~3.2 s), bandwidth-bound |
 | everything else (GEMV, norms, launch overhead) | ~3% | 69.6k kernel launches cost only 0.27 s CUDA — compute-bound at chi=512 |
 
-Reading vs the same profile of the 5-state Rydberg workload (MPO D=14,
-charged npc tensors), which split 64% GEMM / 20% eigh / 13% copies: the QDM
+Reading vs the same profile of the engine's original development workload
+(a 5-state constrained model, MPO D=14, charged npc tensors), which split
+64% GEMM / 20% eigh / 13% copies: the QDM
 is even more GEMM-dominated — its MPO bond dimension D=26 scales the GEMM
 flops (Lanczos matvecs, environment updates) while the truncation eigh cost
 (∝ (d·chi)³, D-independent) is unchanged, and the charge-free single-block
 tensors leave no bookkeeping overhead. Implications for the optimization
 backlog on this workload: **MPO sparsity** (the D=26 multiplier sits in the
 74.5% share) and **single-site/CBE** outrank randomized top-k eigh, whose
-ceiling here is the 7% truncation share (it was ~25% on the Rydberg
+ceiling here is the 7% truncation share (it was ~25% on the development
 workload).
 
 chi=1024 deliberately not profiled: both dominant cost centers scale as
@@ -263,17 +264,27 @@ second-order), mean entropy `S_mean` (what the tenpy-style stop watches),
 and max discarded Schmidt weight `trunc_err` (the measured accuracy floor
 of the run). All cheap by-products of truncation.
 
-## Cold-start schedule A/B: staged chi ramp vs full-chi
+## Cold-start schedule: staged chi ramp beats full-chi
 
-*(Planned follow-up run. The engine supports a tenpy-style sweep-indexed
-`chi_list` ramp with the mixer re-armed at each step —
-`run_dmrg_torch(..., chi_list={0: 256, 5: 512, 10: 1024},
-mixer_params={'disable_after': 5})`, as used in `examples/run_qdm.py`. The
-A/B will time staged vs full-chi to a fixed relative accuracy on the QDM
-point. — not yet run.)*
+The production cold start is the staged schedule — sweep-indexed
+`chi_list` ramp with the mixer re-armed at each chi step, mixer off
+after the ramp — e.g. `run_dmrg_torch(..., chi_list={0: chi/4,
+5: chi/2, 10: chi}, mixer_params={'disable_after': 5})`, as used by
+`examples/run_qdm.py` and `examples/run_gpu_sweep.py`. A/B runs against
+the plain schedule (`chi_max` from sweep 1, default mixer decay, same
+total sweep budget, identical initial state) established two things
+experimentally:
 
-## Pending
-
-Optional follow-up runs not yet done: the cold-start A/B (staged
-`chi_list`). A first QDM phase diagram over V/t (6×6, chi=512, job
-30530715) is in `examples/` — see `examples/README.md §5`.
+- **Faster.** The early low-chi sweeps cost almost nothing (sweep cost
+  ∝ chi³) yet do most of the qualitative work, so the staged run
+  reaches any fixed accuracy in less wall-clock — the advantage is
+  largest where convergence is slow (near criticality).
+- **More reliable, not less.** Where the spectrum has a
+  quasi-degenerate manifold of orderings, the low-chi stage acts as a
+  **symmetry-breaking branch selector**: the run drops into one
+  low-entanglement ordering and refines it. Full chi from sweep 1
+  gives the early strong-mixer state enough variational room to build
+  a high-entanglement *mixture* of the competing orderings — a local
+  minimum it cannot collapse out of once the mixer dies, ending
+  variationally *higher* than the staged run. The naive "low-chi bias"
+  worry inverts: full-chi-from-sweep-1 is the biased schedule.
