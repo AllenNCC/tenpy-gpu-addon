@@ -84,9 +84,9 @@ Here we push the constraint into the site definition on *half* the lattice:
 
 **Each A-vertex is a single 4-state site.** Its basis
 $|1\rangle,|2\rangle,|3\rangle,|4\rangle$ means *"my dimer points along leg
-$k$"* (right/left/up/down). There is **no empty state**, so *"exactly one
+$k$ "* (right/left/up/down). There is **no empty state**, so *"exactly one
 dimer touches this A-vertex"* is built in for free — no constraint needed on
-the A-sublattice. On-site operators: $n_k = |k\rangle\langle k|$ (leg-$k$
+the A-sublattice. On-site operators: $n_k = |k\rangle\langle k|$ (leg- $k$
 occupation) and the ladder operators $T_{ab} = |a\rangle\langle b|$ that
 move the dimer from leg $b$ to leg $a$ (these build the plaquette flip).
 
@@ -115,9 +115,9 @@ regime for this model.
 factors, both of the form
 
 $$
-m^2 \;=\; \frac{\langle O^\dagger O\rangle}{(N_{\text{vert}}/2)^2},
+m^2 = \frac{\langle O^\dagger O\rangle}{(N_{\text{vert}}/2)^2},
 \qquad
-O \;=\; \sum_{\text{bonds } b} \phi_b\, n_b ,
+O = \sum_{\text{bonds } b} \phi_b\, n_b ,
 $$
 
 where $n_b$ is the occupation of bond $b$ and the phase pattern is

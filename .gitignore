@@ -19,4 +19,8 @@ examples/rydberg_model.py
 examples/rydberg_phase_diagram.py
 examples/run_rydberg_phase_diagram.sbatch
 examples/rydberg_runs/
+examples/rydberg_vint_sweep.py
 examples/corr_readme.md
+examples/prune_sweep_psi.py
+examples/plot_tilted_phases.py
+examples/combine_sweep_npz.py
