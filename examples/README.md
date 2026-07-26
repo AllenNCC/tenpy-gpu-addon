@@ -9,14 +9,12 @@ The `tenpy_gpu_addon` demo model. Files:
   measure with `DeviceMPS`, using the *same* observable code you'd run on a
   tenpy MPS.
 - **[`run_gpu_sweep.py`](run_gpu_sweep.py)** — a **model-agnostic** parameter-
-  sweep driver: cold / warm-forward / warm-backward chains with classical
-  anchor seeding, plus the pointwise min-energy phase-diagram estimator. Reused
-  unchanged for any charge-free model via three callbacks (see §5).
+  sweep driver. 
 - **[`qdm_phase_diagram.py`](qdm_phase_diagram.py)** — the worked example: wires
   the QDM into `run_gpu_sweep`, scans the coupling `V`, and plots the phase
   diagram from the lowest-energy state at each point.
 
-The model is deliberately **charge-free** (`LegCharge.from_trivial`): every
+The model is doesn't take advantage of charge conservation (`LegCharge.from_trivial`): every
 npc tensor is a single dense block, which is what the addon's torch backends
 require. If you adapt this to your own model, keep `conserve=None`.
 
@@ -42,12 +40,12 @@ $$
 - **Diagonal, $`V`$:** counts *flippable* plaquettes (those with two parallel
   dimers). $`V<0`$ rewards flippability, $`V>0`$ penalises it.
 
-Only the ratio $`V/t`$ is physical. The default `t=1, V=0` sits in the
+The default `t=1, V=0` sits in the
 kinetic-dominated regime; **the phase diagram is the $`V/t`$ axis** (columnar
 at $`V/t \to -\infty`$, the RK point at $`V/t = 1`$, staggered for $`V/t > 1`$),
 which is what the two order parameters in §4 are built to resolve.
 
-`model_params` (defaults): `Lx=6, Ny=6, bc_MPS='finite', t=1.0, V=0.0,
+`model_params` (defaults): `Lx=6, Ny=12, bc_MPS='finite', t=1.0, V=0.0,
 V_blockade=50.0`.
 
 ---
@@ -95,7 +93,7 @@ dimer touches each B-vertex* — is not automatic, so it is imposed
 **softly**: for every pair of legs meeting at a B-vertex,
 
 $$
-H_{\text{match}} = \sum_{B}\ \sum_{(a,b)\ \text{at}\ B} n_a\, n_b ,
+H_{\text{match}} = \sum_{B}\ \sum_{(a,b)\ \text{at}\ B} n_a n_b
 $$
 
 a penalty $`V_{\text{blockade}}\,n_a n_b`$ for two dimers touching the same
@@ -117,7 +115,7 @@ factors, both of the form
 $$
 m^2 = \frac{\langle O^\dagger O\rangle}{(N_{\text{vert}}/2)^2},
 \qquad
-O = \sum_{\text{bonds } b} \phi_b\, n_b ,
+O = \sum_{\text{bonds } b} \phi_b n_b
 $$
 
 where $`n_b`$ is the occupation of bond $`b`$ and the phase pattern is
@@ -209,7 +207,7 @@ is lower in energy at that `V`. Unlike a plain product cold start these
 plaquettes the kinetic term acts on. (A cold, product-seeded chain is `--cold`,
 off by default: it dark-stalls at $`E=0`$, χ=1 for the QDM.)
 
-![alt text](image.png)
+![alt text](image-1.png)
 
 ### Reusing the driver for your own model
 

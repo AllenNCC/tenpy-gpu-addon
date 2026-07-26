@@ -231,13 +231,18 @@ def forward_backward(build_model, param_values, *, measure, classical_seed=None,
     return runs
 
 
-def combine_min_energy(runs):
+def combine_min_energy(runs, tie_tol=1e-8):
     """Pointwise phase-diagram estimator: at each parameter value take the
     result from whichever run found the LOWEST energy (variational principle).
 
     `runs` is a dict of run-dicts (as from `forward_backward`), each aligned to
     the same ascending `param`. Returns a single dict with the same keys plus
     `winner` (index of the chosen run per point) and `param`.
+
+    Energies within `tie_tol` of the pointwise minimum count as degenerate,
+    and the earliest run in `runs` order wins the tie (for `forward_backward`
+    that is the forward chain) — a strict argmin would let sub-accuracy noise
+    like a 1e-11 offset at an exactly degenerate point pick the run.
     """
     names = list(runs)
     ref = runs[names[0]]['param']
@@ -245,7 +250,8 @@ def combine_min_energy(runs):
         assert np.allclose(runs[name]['param'], ref), \
             f"run '{name}' param grid misaligned"
     E = np.stack([runs[name]['E0'] for name in names])   # (n_runs, n_points)
-    win = np.argmin(E, axis=0)
+    # first run within tie_tol of the pointwise minimum
+    win = np.argmax(E <= E.min(axis=0) + tie_tol, axis=0)
     out = {'param': ref, 'winner': win,
            'winner_name': np.array([names[w] for w in win])}
     for key in runs[names[0]]:

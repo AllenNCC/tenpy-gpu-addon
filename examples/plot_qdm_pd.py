@@ -82,8 +82,8 @@ def plot(run, path, Vc=1.0, size=None, title=None,
     # --- title: "<size>: phase diagram from pointwise lowest energy; dotted = ..."
     if title is None:
         size_str = f"{size[0]} × {size[1]}, " if size else ""
-        title = (f"{size_str}phase diagram from pointwise lowest energy; "
-                 r"dotted = RK point $V/t = 1$")
+        title = (f"DMRG {size_str} cylinder phase diagram; "
+                 r"RK point $V/t = 1$")
     fig.suptitle(title)
     if crit_label is None:
         crit_label = rf"$V_c={Vc:g}$"
@@ -99,8 +99,8 @@ def plot(run, path, Vc=1.0, size=None, title=None,
                            ([density.max()] if density is not None else [])))
     if Vc is not None:
         axL.axvline(Vc, ls=':', color='0.5', lw=1.2)
-        axL.text(Vc, 0.55 * ymax, crit_label + '  ', rotation=90, va='center',
-                 ha='right', color='0.45', fontsize=10)
+        # axL.text(Vc, 0.55 * ymax, crit_label + '  ', rotation=90, va='center',
+                #  ha='right', color='0.45', fontsize=10)
     axL.set_xlabel(xlabel)
     axL.set_ylabel(ylabelL)
     axL.set_ylim(-0.03 * ymax, 1.05 * ymax)
