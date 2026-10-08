@@ -1,0 +1,74 @@
+node: holygpu8a22103.rc.fas.harvard.edu
+NVIDIA A100-SXM4-80GB, 81920 MiB, 610.57.04
+Model name:          Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+grow t= 0.10 chi=   59 4.90s
+grow t= 0.20 chi=   75 0.71s
+grow t= 0.30 chi=   95 0.73s
+grow t= 0.40 chi=  108 0.77s
+grow t= 0.50 chi=  125 0.78s
+grow t= 0.60 chi=  137 0.80s
+grow t= 0.70 chi=  154 0.84s
+grow t= 0.80 chi=  170 0.89s
+grow t= 0.90 chi=  191 0.96s
+grow t= 1.00 chi=  208 1.02s
+grow t= 1.10 chi=  229 1.09s
+grow t= 1.20 chi=  250 1.20s
+grow t= 1.30 chi=  277 1.32s
+grow t= 1.40 chi=  304 1.47s
+grow t= 1.50 chi=  334 1.64s
+grow t= 1.60 chi=  368 1.87s
+grow t= 1.70 chi=  404 2.13s
+grow t= 1.80 chi=  438 2.42s
+grow t= 1.90 chi=  480 2.82s
+grow t= 2.00 chi=  527 3.31s
+grow t= 2.10 chi=  576 3.89s
+grow t= 2.20 chi=  633 4.60s
+grow t= 2.30 chi=  693 5.52s
+grow t= 2.40 chi=  760 6.66s
+grow t= 2.50 chi=  831 7.97s
+grow t= 2.60 chi=  905 9.68s
+grow t= 2.70 chi=  984 11.73s
+grow t= 2.80 chi= 1024 14.07s
+grow t= 2.90 chi= 1024 16.57s
+grow t= 3.00 chi= 1024 17.76s
+grow t= 3.10 chi= 1024 18.97s
+grow t= 3.20 chi= 1024 20.30s
+grow t= 3.30 chi= 1024 21.25s
+grow t= 3.40 chi= 1024 22.02s
+grow t= 3.50 chi= 1024 22.97s
+grow t= 3.60 chi= 1024 23.86s
+grow t= 3.70 chi= 1024 24.32s
+grow t= 3.80 chi= 1024 24.99s
+grow t= 3.90 chi= 1024 25.33s
+grow t= 4.00 chi= 1024 25.78s
+grow t= 4.10 chi= 1024 26.52s
+grow t= 4.20 chi= 1024 27.12s
+grow t= 4.30 chi= 1024 27.46s
+grow t= 4.40 chi= 1024 27.82s
+grow t= 4.50 chi= 1024 28.19s
+grow t= 4.60 chi= 1024 28.54s
+grow t= 4.70 chi= 1024 28.95s
+grow t= 4.80 chi= 1024 29.48s
+grow t= 4.90 chi= 1024 29.98s
+grow t= 5.00 chi= 1024 30.56s
+grow t= 5.10 chi= 1024 30.93s
+grow t= 5.20 chi= 1024 31.14s
+grow t= 5.30 chi= 1024 31.39s
+grow t= 5.40 chi= 1024 31.68s
+grow t= 5.50 chi= 1024 31.88s
+grow t= 5.60 chi= 1024 32.20s
+grow t= 5.70 chi= 1024 32.51s
+grow t= 5.80 chi= 1024 32.83s
+grow t= 5.90 chi= 1024 33.20s
+grow t= 6.00 chi= 1024 33.53s
+{"engine": "torch-cuda", "chi": 128, "chi_reached": 128, "t_sweep": [2.7000625133514404, 0.9731221199035645, 0.9736204147338867], "mean_s": 0.9733712673187256}
+{"engine": "torch-cpu", "chi": 128, "chi_reached": 128, "t_sweep": [37.76033902168274, 8.675782680511475, 8.205925226211548], "mean_s": 8.440853953361511}
+{"engine": "tenpy", "chi": 128, "chi_reached": 128, "t_sweep": [68.8829414844513, 14.706317663192749, 14.721812725067139], "mean_s": 14.714065194129944}
+{"engine": "torch-cuda", "chi": 256, "chi_reached": 256, "t_sweep": [4.94584846496582, 2.069352626800537, 2.0894439220428467], "mean_s": 2.079398274421692}
+{"engine": "torch-cpu", "chi": 256, "chi_reached": 256, "t_sweep": [82.12454295158386, 32.589746713638306, 32.4824538230896], "mean_s": 32.53610026836395}
+{"engine": "tenpy", "chi": 256, "chi_reached": 256, "t_sweep": [140.58684277534485, 46.987396001815796, 47.216115951538086], "mean_s": 47.10175597667694}
+{"engine": "torch-cuda", "chi": 512, "chi_reached": 512, "t_sweep": [11.261274814605713, 7.075688123703003, 7.122062921524048], "mean_s": 7.098875522613525}
+{"engine": "torch-cpu", "chi": 512, "chi_reached": 512, "t_sweep": [201.44097328186035, 129.13277101516724, 129.852205991745], "mean_s": 129.49248850345612}
+{"engine": "tenpy", "chi": 512, "chi_reached": 512, "t_sweep": [345.0115370750427, 197.29799723625183, 227.70394611358643], "mean_s": 212.50097167491913}
+{"engine": "torch-cuda", "chi": 1024, "chi_reached": 1024, "t_sweep": [34.175665855407715, 34.305726051330566, 34.736172676086426], "mean_s": 34.40585486094157}
+[2026-10-07T17:54:13.837] error: *** JOB 51161381 ON holygpu8a22103 CANCELLED AT 2026-10-07T17:54:13 DUE to SIGNAL Terminated ***

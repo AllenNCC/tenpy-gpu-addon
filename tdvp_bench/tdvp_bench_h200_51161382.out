@@ -1,0 +1,69 @@
+node: holygpu8a12201.rc.fas.harvard.edu
+NVIDIA H200, 143771 MiB, 610.57.04
+Model name:          Intel(R) Xeon(R) Platinum 8480CL
+grow t= 0.10 chi=   60 4.43s
+grow t= 0.20 chi=   78 0.56s
+grow t= 0.30 chi=   95 0.56s
+grow t= 0.40 chi=  109 0.58s
+grow t= 0.50 chi=  124 0.59s
+grow t= 0.60 chi=  139 0.60s
+grow t= 0.70 chi=  155 0.62s
+grow t= 0.80 chi=  174 0.63s
+grow t= 0.90 chi=  191 0.67s
+grow t= 1.00 chi=  210 0.70s
+grow t= 1.10 chi=  231 0.73s
+grow t= 1.20 chi=  256 0.78s
+grow t= 1.30 chi=  279 0.82s
+grow t= 1.40 chi=  306 0.88s
+grow t= 1.50 chi=  339 0.96s
+grow t= 1.60 chi=  368 1.04s
+grow t= 1.70 chi=  398 1.27s
+grow t= 1.80 chi=  438 1.29s
+grow t= 1.90 chi=  480 1.46s
+grow t= 2.00 chi=  523 1.68s
+grow t= 2.10 chi=  576 1.92s
+grow t= 2.20 chi=  631 2.22s
+grow t= 2.30 chi=  692 2.58s
+grow t= 2.40 chi=  754 3.04s
+grow t= 2.50 chi=  831 3.69s
+grow t= 2.60 chi=  903 4.37s
+grow t= 2.70 chi=  983 5.35s
+grow t= 2.80 chi= 1075 6.47s
+grow t= 2.90 chi= 1164 7.76s
+grow t= 3.00 chi= 1266 9.37s
+grow t= 3.10 chi= 1359 11.41s
+grow t= 3.20 chi= 1459 14.11s
+grow t= 3.30 chi= 1588 16.86s
+grow t= 3.40 chi= 1732 20.37s
+grow t= 3.50 chi= 1887 24.91s
+grow t= 3.60 chi= 2046 30.39s
+grow t= 3.70 chi= 2048 34.75s
+grow t= 3.80 chi= 2048 38.94s
+grow t= 3.90 chi= 2048 41.60s
+grow t= 4.00 chi= 2048 44.49s
+grow t= 4.10 chi= 2048 47.93s
+grow t= 4.20 chi= 2048 49.98s
+grow t= 4.30 chi= 2048 51.00s
+grow t= 4.40 chi= 2048 52.20s
+grow t= 4.50 chi= 2048 54.29s
+grow t= 4.60 chi= 2048 56.49s
+grow t= 4.70 chi= 2048 58.41s
+grow t= 4.80 chi= 2048 59.45s
+grow t= 4.90 chi= 2048 60.33s
+grow t= 5.00 chi= 2048 61.34s
+grow t= 5.10 chi= 2048 62.96s
+grow t= 5.20 chi= 2048 63.85s
+grow t= 5.30 chi= 2048 64.93s
+grow t= 5.40 chi= 2048 66.74s
+grow t= 5.50 chi= 2048 68.10s
+grow t= 5.60 chi= 2048 69.28s
+grow t= 5.70 chi= 2048 69.51s
+grow t= 5.80 chi= 2048 70.08s
+grow t= 5.90 chi= 2048 70.75s
+grow t= 6.00 chi= 2048 70.92s
+{"engine": "torch-cuda", "chi": 128, "chi_reached": 128, "t_sweep": [2.8138022422790527, 0.684645414352417, 0.6870529651641846], "mean_s": 0.6858491897583008}
+{"engine": "torch-cuda", "chi": 256, "chi_reached": 256, "t_sweep": [4.848388195037842, 1.141690969467163, 1.1494479179382324], "mean_s": 1.1455694437026978}
+{"engine": "torch-cuda", "chi": 512, "chi_reached": 512, "t_sweep": [9.509690284729004, 3.157395124435425, 3.17899489402771], "mean_s": 3.1681950092315674}
+{"engine": "torch-cuda", "chi": 1024, "chi_reached": 1024, "t_sweep": [23.320231914520264, 14.173897743225098, 14.369613647460938], "mean_s": 14.271755695343018}
+{"engine": "torch-cuda", "chi": 2048, "chi_reached": 2048, "t_sweep": [72.54938626289368, 72.67896795272827, 73.56956005096436], "mean_s": 72.9326380888621}
+ALL DONE

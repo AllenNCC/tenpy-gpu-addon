@@ -1,23 +1,34 @@
 # tenpy-gpu-addon
 
-GPU acceleration for [TeNPy](https://github.com/tenpy/tenpy) DMRG — **without
-touching TeNPy**. Your model, lattice, and observable code stays in tenpy;
-this package consumes them through tenpy's public API and moves the expensive
-contractions (the chi³ that dominate DMRG) onto a GPU with PyTorch.
+GPU acceleration for [TeNPy](https://github.com/tenpy/tenpy) DMRG and TDVP
+time evolution — **without touching TeNPy**. Your model, lattice, and
+observable code stays in tenpy; this package consumes them through tenpy's
+public API and moves the expensive contractions (the chi³ that dominate both
+algorithms) onto a GPU with PyTorch.
 
 ```python
-from tenpy_gpu_addon import run_dmrg_torch
+from tenpy_gpu_addon import run_dmrg_torch, TorchTDVP
 
 E, psi, info = run_dmrg_torch(my_tenpy_model, chi_max=1024, device='cuda')
 # psi is a regular tenpy MPS — all your downstream code works unchanged
+
+eng = TorchTDVP(my_tenpy_model, psi0, chi_max=1024, device='cuda')
+for _ in range(1000):
+    eng.sweep(0.1)                      # real time; imaginary=True for exp(-dt H)
+psi_t = eng.to_tenpy()
 ```
 
-Measured on a 36-site cylinder model (MPO bond dimension 14): the full GPU
+DMRG, measured on a 36-site cylinder model (MPO bond dimension 14): the full GPU
 loop on an **A100 is 33–51× a 16-core CPU node** (growing with chi; 9.2
 s/sweep at chi=512, 47 s at chi=1024), and an **H200 adds another 2.3–2.6×**
 with no code changes (~118× vs CPU at chi=512). GPU measurement is ~46× per
 state at chi=1024. For the full benchmark behind these numbers, see
 [bench/README.md](bench/README.md).
+
+TDVP time evolution, measured on a 30-site spin-1 quench (MPO bond dimension
+14): an **A100 is 29–30× TeNPy on 16 CPU cores** at chi = 512–1024 (34 s vs
+1009 s per sweep at chi = 1024), an **H200 67–71×**; see
+[tdvp_bench/README.md](tdvp_bench/README.md).
 
 ## Install
 
@@ -45,14 +56,18 @@ Everything falls back to CPU when CUDA is absent. Dependencies: `numpy`, `physic
  - **Charge-conservation**: the addon currently doesn't take advantage of charge conservation yet, thus your model need to be built without charge conservation (`conserve=None` in most stock tenpy models). Every npc tensor is then a single dense block, which is what makes the dense export legal — this is
   checked loudly at export time.
 - **Infinite MPS**: `run_dmrg_torch` and `DeviceMPS` (measurement) doesn't support iDMRG for now, but   `TorchTwoSiteDMRGEngine` does. It should be straightforward though. 
+- **TDVP scope**: `TorchTDVP` is finite-MPS, two-site, with a time-independent
+  MPO between `set_model` calls (a quench = one `set_model`; a smooth drive
+  would need one per step). No single-site TDVP yet.
 
-## The three entry points
+## The four entry points
 
 | entry point | what it is | when to use it |
 |---|---|---|
 | `run_dmrg_torch(model, ...)` | fully GPU-resident two-site DMRG loop: density-matrix mixer (White 2005), sweep-indexed `chi_list` ramp with per-step mixer re-arm, tenpy-compatible convergence stopping | **production** — fastest by 6–9× over the drop-in engine |
 | `TorchTwoSiteDMRGEngine` | tenpy's stock `TwoSiteDMRGEngine` with only the per-bond Lanczos on the GPU | when you need tenpy features the full loop lacks (iDMRG, charged models, other mixers) — numerically identical to stock tenpy (1e-14) |
 | `DeviceMPS` | tenpy-API-compatible measurement (`expectation_value`, `correlation_function`, `overlap`, `entanglement_entropy`) on the GPU | measuring large-chi states; your observable code runs unchanged on it by duck typing |
+| `TorchTDVP(model, psi, ...)` | fully GPU-resident two-site TDVP (real or imaginary time), sharing the DMRG loop's environment and effective-Hamiltonian kernels; checkpoint/resume | time evolution at large chi — quenches, transport, finite-energy-density dynamics |
 
 ### Full GPU loop
 
@@ -100,6 +115,32 @@ C = m.correlation_function('n1', 'n2')                # batched chi^3 GEMMs
 Scope: finite, charge-free MPS; bosonic operators (anything needing a
 Jordan–Wigner string raises — use tenpy's CPU path for those).
 
+### Time evolution (TDVP)
+
+```python
+from tenpy_gpu_addon import TorchTDVP
+
+eng = TorchTDVP(model, psi0, chi_max=1024, svd_min=1e-10, device='cuda')
+for step in range(n_steps):
+    eng.sweep(dt)                                   # exp(-i dt H), 2nd order
+    h = eng.local_expectations(ops)                 # [(first_site, dense op)]
+    if step % 50 == 0:
+        eng.save('state.npz')                       # resume: TorchTDVP.from_checkpoint
+psi = eng.to_tenpy()
+```
+
+One `sweep(dt)` is the symmetric second-order two-site TDVP integrator
+(Haegeman et al., PRB 94, 165116 (2016)): every bond is evolved forward by
+dt/2 with the two-site effective Hamiltonian on the way right and again on
+the way back, every intermediate centre site backward with the one-site one.
+`sweep(dt, imaginary=True)` applies exp(-dt H) and renormalises (ground
+states, or finite-temperature state preparation). `eng.set_model(new_model)`
+swaps the Hamiltonian in place — prepare with H₀, `set_model(H₁)`, evolve:
+that is a quench. `eng.trunc_err` (discarded weight of the last sweep) and
+`eng.max_chi` are the per-step diagnostics; `local_expectations` is exact for
+the current state (it contracts left transfer matrices rather than reusing
+Schmidt values from the sweep, which are one half-step stale in TDVP).
+
 ## Example: the square-lattice quantum dimer model
 
 `examples/qdm_model.py` is the square-lattice QDM on a cylinder (plaquette ring-exchange via
@@ -114,6 +155,26 @@ python examples/run_qdm.py --Lx 6 --Ny 6 --chi 512 --device cuda
 The model file imports only tenpy; the GPU is attached entirely from the
 outside. Use it as a template for wiring up your own model.
 
+## Example: a conformal-cooling quench (TDVP)
+
+`examples/spin1_chain.py` is a spin-1 bilinear-biquadratic chain (Haldane
+phase) whose energy scale can vary bond by bond, `H = J Σ λ_x [S·S + (γ/3)(S·S)²]`;
+`examples/run_tdvp_quench.py` reproduces the quench of Fig. 2 of Zaletel,
+Kaufman, Stamper-Kurn & Yao, [arXiv:1611.04591](https://arxiv.org/abs/1611.04591):
+prepare `exp(-τH)|Néel⟩` with stock tenpy (imaginary-time `ExpMPOEvolution`,
+T ≈ 0.5 J), reduce λ to 0.17 on a "bath" region, and watch heat drain out of
+the λ = 1 "system" region with GPU TDVP.
+
+```bash
+python examples/run_tdvp_quench.py                              # laptop: L=16, chi=64
+python examples/run_tdvp_quench.py --L 30 --chi 1024 --tmax 100 --device cuda
+```
+
+The paper's authors report that their run to t = 100/J took several weeks of
+computing time. At chi = 1024 that is 1000 sweeps: ~12 days with TeNPy on 16
+CPU cores, ~9.5 h on an A100, ~4 h on an H200
+([tdvp_bench/README.md](tdvp_bench/README.md)).
+
 ## Validation
 
 `pytest tests -v`
@@ -127,6 +188,11 @@ outside. Use it as a template for wiring up your own model.
   observable code.
 - A regression test pins the Lanczos near-breakdown guard (see
   `docs/lanczos-stability.md` for the post-mortem that produced it).
+- `TorchTDVP` matches stock tenpy's `TwoSiteTDVPEngine` step for step (state
+  overlap 1 − 1e-9, local observables to 1e-9; CPU and CUDA), matches exact
+  time evolution, conserves energy to ~1e-10 when nothing is truncated,
+  reaches the ED ground state in imaginary time, and resumes from a
+  checkpoint on the same trajectory (overlap 1 − 1e-12).
 
 ```bash
 pytest tests -v -m "not gpu"    # CPU tier — any machine, no CUDA needed
@@ -157,6 +223,12 @@ end; the GPU replaces only the middle — the DMRG engine itself.**
    shapes), environment updates.
 4. The site tensors come back once at the end and `import_mps` wraps them
    into a genuine tenpy `MPS`.
+
+TDVP reuses steps 1, 2 and 4 and the same environment/matvec kernels; step 3
+becomes a Krylov action of exp(a·H_eff) — Lanczos with the same batched CGS2
+reorthogonalisation, converged when the weight the next Krylov vector would
+receive drops below 1e-12 — followed by the same `eigh`-based truncation on
+CUDA (SVD on CPU).
 
 The drop-in engine draws the boundary differently — tenpy keeps the whole
 engine and only the Lanczos matvecs cross to the GPU, paying a host↔device
@@ -213,15 +285,39 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
    tenpy. (Benchmark: `bench/README.md` § "GPU truncation routes through
    rho-eigh".)
 
+   **When the eigh floor matters (DMRG and TDVP alike).** `eigh` returns the
+   eigenvalues $s_k^2$ of $\rho = \theta\theta^\dagger$ with absolute error
+   $\sim \epsilon \lVert\rho\rVert \approx 10^{-16}$, so Schmidt values below
+   $\sim 10^{-8} s_0$ are noise. Note that this does not change the state's form:
+   the kept eigenvectors are orthonormal to machine precision, the Schmidt
+   values are absorbed into the other factor, so canonical form is exact.
+   - *Harmless:* whenever `chi_max` binds — the production regime. Discarded
+     weights there are $10^{-7}$–$10^{-6}$ per TDVP sweep at chi = 1024
+     (well above $10^{-16}$), so `trunc_err` is meaningful and energies and
+     local observables are unaffected; entanglement entropy picks up
+     $O(10^{-16})$.
+   - *Not resolved:* the deep entanglement-spectrum tail ($s_k < 10^{-8}
+     s_0$). Use the CPU path (SVD) if you need it.
+   - *`svd_min` below $10^{-8}$ is not honoured on CUDA.* The keep rule
+     compares eigenvalues against `svd_min**2` ($10^{-20}$ at the default),
+     which is below the $10^{-16}$ noise. So while `chi_max` does not bind
+     (early times in a quench, small DMRG stages), roughly half of the
+     numerically zero directions come out slightly positive and are kept. chi
+     then grows faster than the state needs. This costs time but not accuracy:
+     those directions carry $\sim 10^{-16}$ weight. It stops once `chi_max`
+     binds.
+
 ## Layout
 
 - `tenpy_gpu_addon/dense.py` — tenpy MPO/MPS ↔ dense tensors (public API only)
 - `tenpy_gpu_addon/dmrg.py` — the fully GPU-resident two-site DMRG loop
 - `tenpy_gpu_addon/engine.py` — GPU Lanczos inside the stock tenpy engine
 - `tenpy_gpu_addon/measure.py` — `DeviceMPS` GPU measurement
-- `examples/` — the QDM model + runnable demo
+- `tenpy_gpu_addon/tdvp.py` — `TorchTDVP` two-site TDVP time evolution
+- `examples/` — the QDM model + DMRG demo; the spin-1 chain + TDVP quench demo
 - `tests/` — the validation suite described above
-- `bench/` — timing benchmarks
+- `bench/` — DMRG timing benchmarks
+- `tdvp_bench/` — TDVP timing benchmarks
 
 ## License
 

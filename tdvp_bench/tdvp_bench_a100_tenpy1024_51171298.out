@@ -1,0 +1,5 @@
+node: holygpu8a22103.rc.fas.harvard.edu
+NVIDIA A100-SXM4-80GB, 81920 MiB, 610.57.04
+Model name:          Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
+{"engine": "tenpy", "chi": 1024, "chi_reached": 1024, "t_sweep": [1009.4571759700775, 1008.9197173118591], "mean_s": 1009.1884466409683}
+ALL DONE
