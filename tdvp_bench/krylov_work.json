@@ -1,0 +1,22 @@
+[
+ {
+  "chi": 256,
+  "matvecs_torch": 973,
+  "matvecs_tenpy": 1072,
+  "matvecs_ref": 1143,
+  "err_torch": 6.439293542825908e-15,
+  "err_tenpy": 3.786970736996409e-13,
+  "t_torch": 3.194375514984131,
+  "t_tenpy": 68.8238627910614
+ },
+ {
+  "chi": 512,
+  "matvecs_torch": 977,
+  "matvecs_tenpy": 1080,
+  "matvecs_ref": 1149,
+  "err_torch": 3.774758283725532e-15,
+  "err_tenpy": 7.792655409843974e-13,
+  "t_torch": 13.252850770950317,
+  "t_tenpy": 310.8293528556824
+ }
+]

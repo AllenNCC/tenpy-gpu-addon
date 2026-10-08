@@ -11,7 +11,8 @@
 set -u
 export LD_LIBRARY_PATH=$HOME/.conda/envs/my_env/lib:${LD_LIBRARY_PATH:-}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-export OMP_NUM_THREADS=16 MKL_NUM_THREADS=16 OPENBLAS_NUM_THREADS=16
+N=${SLURM_CPUS_PER_TASK:-16}
+export OMP_NUM_THREADS=$N MKL_NUM_THREADS=$N OPENBLAS_NUM_THREADS=$N
 D=/n/home05/nchiu/tenpy_gpu_addon/tdvp_bench
 cd $D
 $HOME/.conda/envs/my_env/bin/python krylov_work.py --ckpt $D/state_L30.npz \

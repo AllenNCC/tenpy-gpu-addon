@@ -92,6 +92,17 @@ that their t = 100/J run took several weeks of computing time.)
   magnitude above that floor. Below that floor `svd_min` is raised to
   1e-7 on this path, so noise directions are not kept before `chi_max`
   binds. Details: main README, § "The mixer", item 3.
+- **Both engines do comparable Krylov work.** They stop the Krylov
+  exponential differently (TeNPy: |c_k| < 1e-14, no reorthogonalisation;
+  here: |β_k c_k| < 1e-12, CGS2). `krylov_work.py` counts effective-Hamiltonian
+  matvecs over one sweep from the benchmark state (`krylov_work.json`,
+  job 51378492). TorchTDVP did 973 (χ = 256) and 977 (χ = 512) matvecs per
+  sweep, TeNPy 1072 and 1080, about 10% more. Against a TorchTDVP reference
+  with tolerance 1e-15 (1143–1149 matvecs), the states differ by
+  1 − |⟨ψ|ψ_ref⟩| = 4–6e-15 (TorchTDVP) and 4–8e-13 (TeNPy, whose SVD
+  truncation path also differs from the reference). Both are far below the
+  ~1e-7 per-sweep truncation error. So at most ~10% of the measured speedup
+  comes from the stopping rule, and the rest is the hardware.
 - **Per-sweep time keeps rising during growth** even after `max(chi)`
   reaches `chi_max`: the central bonds saturate first and the outer ones
   fill in afterwards (light cone), so work per sweep grows until the whole
