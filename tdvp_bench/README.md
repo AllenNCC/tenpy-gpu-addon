@@ -19,8 +19,9 @@ within a few 1/J, so a production run spends essentially all its time at
 already entangled:
 
 1. **grow** — evolve on the GPU to t = 6 with `chi_max` = the largest chi of
-   the run, and checkpoint. At t = 6 the central bonds are saturated and the
-   bond-dimension profile is the light-cone shape of a real run.
+   the run, and checkpoint. At t = 6 the central bonds are saturated; the
+   bath and edge bonds are still filling in (see the run-time estimates
+   below).
 2. **time** — every engine loads the *same* checkpoint, truncates it to the
    chi under test, and runs 3 sweeps (2 for TeNPy at chi = 1024). The first
    sweep at a reduced chi also performs that truncation, so it is excluded
@@ -65,9 +66,22 @@ Readings:
   chi = 2048, d = 3).
 
 What this means for the example's full run (t = 100/J at dt = 0.1, i.e.
-1000 sweeps at chi = 1024): **~12 days** with TeNPy on 16 cores, **~9.5 h** on
-an A100, **~4 h** on an H200. (The paper's authors report that their
-t = 100/J run took several weeks of computing time.)
+1000 sweeps at chi = 1024):
+
+| | TeNPy, 16 CPU cores | A100 | H200 |
+|---|---|---|---|
+| at the benchmark state's cost (lower bound) | 12 days | 9.6 h | 4.0 h |
+| fully saturated bond profile (×2.2) | 26 days | 21 h | 8.8 h |
+
+The benchmark state (t = 6) is not yet saturated: only 7 of its 29 bonds are
+at chi = 1024. The bath bonds (λ = 0.17, where dynamics run ~6× slower) sit
+at chi ≈ 120–190, and the bonds near the right edge are still small too. A
+profile saturated wherever d^min(i, L−i) allows costs 2.2× more per sweep at
+chi = 1024 (1.8× at 512, 1.5× at 256), counting two-site matvec work. A long
+run fills in towards that profile, so the second row is the realistic
+estimate. The speedup ratios do not depend on this, because both engines
+spend their time on the same chi³ contractions. (The paper's authors report
+that their t = 100/J run took several weeks of computing time.)
 
 ## Notes
 
@@ -75,9 +89,9 @@ t = 100/J run took several weeks of computing time.)
   not SVD — the same choice and the same ~1e-8 Schmidt-value floor as the
   DMRG loop (see the main README). With `chi_max` binding, the discarded
   weight per sweep (~1e-7–1e-6 here at chi = 1024 by t ≈ 10) is orders of
-  magnitude above that floor. When the floor does matter (the
-  entanglement-spectrum tail, and `svd_min` below 1e-8 not being honoured
-  before `chi_max` binds): main README, § "The mixer", item 3.
+  magnitude above that floor. Below that floor `svd_min` is raised to
+  1e-7 on this path, so noise directions are not kept before `chi_max`
+  binds. Details: main README, § "The mixer", item 3.
 - **Per-sweep time keeps rising during growth** even after `max(chi)`
   reaches `chi_max`: the central bonds saturate first and the outer ones
   fill in afterwards (light cone), so work per sweep grows until the whole

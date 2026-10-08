@@ -164,7 +164,11 @@ called SVD and paid for it). The engine now routes **all** CUDA truncation
 through the rho-eigh path — the mixer just adds its perturbation when active;
 exact LAPACK SVD is kept for CPU. The Gram trick's accuracy cost is the
 predicted √ε Schmidt floor (~1e-8), with E/observable impact ~1e-16 — the
-same floor the validated mixer path always carried.
+same floor the validated mixer path always carried. Because the null space of
+rho comes back as ± noise at that level, the eigh path never cuts below
+Schmidt values of 1e-7 relative to the largest (`_EIGH_SCHMIDT_FLOOR`). A
+smaller `svd_min` would otherwise keep noise directions and inflate chi
+before `chi_max` binds.
 
 ## Engine finding: GPU memory at large chi
 

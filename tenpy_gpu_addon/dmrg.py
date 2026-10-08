@@ -107,6 +107,21 @@ def _lanczos(L, W1, W2, R, theta0, torch, max_iter=20, E_tol=1e-14, P_tol=1e-14)
     return E, theta / torch.linalg.vector_norm(theta)
 
 
+# Truncating through eigh(rho) resolves Schmidt values only down to ~sqrt(eps):
+# the null space of rho comes back as +-noise of size ~1e-15 * s0^2 (s/s0 ~
+# 2e-8 at n = 200, 3.4e-8 at n = 3000). A keep cut below that noise would
+# retain noise directions and inflate chi, so the eigh path never cuts below
+# s/s0 = 1e-7 (~3x above the noise at chi*d = 3000).
+_EIGH_SCHMIDT_FLOOR = 1e-7
+
+
+def _eigh_keep(evals, cut, chi_max):
+    """Number of descending eigenvalues of rho to keep: those above `cut` and
+    above the eigh noise floor, at most chi_max, at least 1."""
+    cut = max(cut, _EIGH_SCHMIDT_FLOOR ** 2 * float(evals[0]))
+    return max(1, min(chi_max, int((evals > cut).sum().item())))
+
+
 def _safe_eigh(rho, torch):
     """Hermitian eigendecomposition robust to cuSOLVER `syevd` convergence
     failures on (near-)degenerate density matrices — e.g. a product-state
@@ -267,7 +282,7 @@ def run_dmrg_torch(model, psi0=None, chi_max=256, n_sweeps=None, svd_min=1e-10,
                 rho = rho + _mix_rho_R(RE[i + 1], Ws[i + 1], theta, amp, torch)
         evals, evecs = _safe_eigh(rho, torch)              # ascending
         evals, evecs = evals.flip(0), evecs.flip(1)        # descending
-        keep = max(1, min(chi_now, int((evals > svd_min ** 2).sum().item())))
+        keep = _eigh_keep(evals, svd_min ** 2, chi_now)
         clamped = torch.clamp(evals, min=0.0)
         disc = float(clamped[keep:].sum() / clamped.sum())  # discarded weight
         V = evecs[:, :keep]

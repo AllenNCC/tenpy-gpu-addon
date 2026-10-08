@@ -17,7 +17,7 @@ import time
 import numpy as np
 
 from .dense import export_mpo, export_mps, import_mps, ucw_kwargs
-from .dmrg import _matvec, _safe_eigh, _torch, _update_L, _update_R
+from .dmrg import _eigh_keep, _matvec, _safe_eigh, _torch, _update_L, _update_R
 
 
 def _expm_krylov(apply, v0, a, torch, max_iter=30, tol=1e-12):
@@ -68,7 +68,9 @@ class TorchTDVP:
     model : tenpy MPOModel (finite, charge-free)
     psi : tenpy MPS (finite, charge-free; not modified), or a list of dense
         [vL,p,vR] arrays in centre-on-0 form, e.g. from a `save()` checkpoint
-    chi_max, svd_min : truncation of each two-site split
+    chi_max, svd_min : truncation of each two-site split (svd_min relative
+        to the largest Schmidt value; on CUDA floored at 1e-7, see
+        dmrg._EIGH_SCHMIDT_FLOOR)
     device : 'cuda' | 'cpu' | None (cuda if available)
     krylov_max, krylov_tol : Krylov exponential controls
     """
@@ -157,8 +159,7 @@ class TorchTDVP:
             else:
                 evals, V = _safe_eigh(M.conj().t() @ M, torch)
             evals, V = evals.flip(0), V.flip(1)
-            keep = max(1, min(self.chi_max,
-                              int((evals > (self.svd_min ** 2) * nrm2).sum().item())))
+            keep = _eigh_keep(evals, self.svd_min ** 2 * nrm2, self.chi_max)
             kept = float(torch.clamp(evals[:keep], min=0.0).sum())
             V = V[:, :keep]
             if to_right:

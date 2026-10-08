@@ -1,0 +1,43 @@
+NVIDIA A100-SXM4-40GB
+============================= test session starts ==============================
+platform linux -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- /n/home05/nchiu/.conda/envs/my_env/bin/python
+cachedir: .pytest_cache
+rootdir: /n/home05/nchiu/tenpy_gpu_addon
+configfile: pyproject.toml
+plugins: anyio-4.14.1
+collecting ... collected 32 items
+
+tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_tfi PASSED           [  3%]
+tests/test_engines.py::test_run_dmrg_torch_vs_tenpy_qdm PASSED           [  6%]
+tests/test_engines.py::test_drop_in_engine_vs_tenpy PASSED               [  9%]
+tests/test_engines.py::test_run_dmrg_torch_cuda PASSED                   [ 12%]
+tests/test_engines.py::test_drop_in_engine_cuda PASSED                   [ 15%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-0.0] PASSED     [ 18%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-05] PASSED   [ 21%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-07] PASSED   [ 25%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[0-1e-09] PASSED   [ 28%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-0.0] PASSED     [ 31%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-05] PASSED   [ 34%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-07] PASSED   [ 37%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[1-1e-09] PASSED   [ 40%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-0.0] PASSED     [ 43%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-05] PASSED   [ 46%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-07] PASSED   [ 50%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[2-1e-09] PASSED   [ 53%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-0.0] PASSED     [ 56%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-05] PASSED   [ 59%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-07] PASSED   [ 62%]
+tests/test_lanczos.py::test_no_ground_state_undershoot[3-1e-09] PASSED   [ 65%]
+tests/test_measure.py::test_expectation_value PASSED                     [ 68%]
+tests/test_measure.py::test_correlation_function PASSED                  [ 71%]
+tests/test_measure.py::test_correlation_function_subsets PASSED          [ 75%]
+tests/test_measure.py::test_entropy_and_overlap PASSED                   [ 78%]
+tests/test_measure.py::test_observables_ducktype PASSED                  [ 81%]
+tests/test_measure.py::test_gpu_matches_oracle PASSED                    [ 84%]
+tests/test_tdvp.py::test_matches_stock_tdvp_cpu PASSED                   [ 87%]
+tests/test_tdvp.py::test_matches_stock_tdvp_gpu PASSED                   [ 90%]
+tests/test_tdvp.py::test_exact_dynamics_and_energy_conservation PASSED   [ 93%]
+tests/test_tdvp.py::test_imaginary_time_reaches_ground_state PASSED      [ 96%]
+tests/test_tdvp.py::test_checkpoint_roundtrip PASSED                     [100%]
+
+======================== 32 passed in 103.52s (0:01:43) ========================

@@ -140,6 +140,9 @@ that is a quench. `eng.trunc_err` (discarded weight of the last sweep) and
 `eng.max_chi` are the per-step diagnostics; `local_expectations` is exact for
 the current state (it contracts left transfer matrices rather than reusing
 Schmidt values from the sweep, which are one half-step stale in TDVP).
+`svd_min` is relative to the largest Schmidt value; on CUDA it is effectively
+`max(svd_min, 1e-7)`, the resolution of the `eigh` truncation (see
+[The mixer](#the-mixer), item 3).
 
 ## Example: the square-lattice quantum dimer model
 
@@ -171,9 +174,10 @@ python examples/run_tdvp_quench.py --L 30 --chi 1024 --tmax 100 --device cuda
 ```
 
 The paper's authors report that their run to t = 100/J took several weeks of
-computing time. At chi = 1024 that is 1000 sweeps: ~12 days with TeNPy on 16
-CPU cores, ~9.5 h on an A100, ~4 h on an H200
-([tdvp_bench/README.md](tdvp_bench/README.md)).
+computing time. At chi = 1024 that is 1000 sweeps. Measured per-sweep times
+put it at 12–26 days with TeNPy on 16 CPU cores, 10–21 h on an A100 and
+4–9 h on an H200; the upper ends are the realistic ones for a full run (the
+range is explained in [tdvp_bench/README.md](tdvp_bench/README.md)).
 
 ## Validation
 
@@ -298,14 +302,17 @@ two-site DMRG), with the same default schedule (`amplitude=1e-5`, `decay=2.0`,
      $O(10^{-16})$.
    - *Not resolved:* the deep entanglement-spectrum tail ($s_k < 10^{-8}
      s_0$). Use the CPU path (SVD) if you need it.
-   - *`svd_min` below $10^{-8}$ is not honoured on CUDA.* The keep rule
-     compares eigenvalues against `svd_min**2` ($10^{-20}$ at the default),
-     which is below the $10^{-16}$ noise. So while `chi_max` does not bind
-     (early times in a quench, small DMRG stages), roughly half of the
-     numerically zero directions come out slightly positive and are kept. chi
-     then grows faster than the state needs. This costs time but not accuracy:
-     those directions carry $\sim 10^{-16}$ weight. It stops once `chi_max`
-     binds.
+   - *On the `eigh` path, `svd_min` is floored at $10^{-7}$ (relative to
+     $s_0$).* The null space of $\rho$ comes back as $\pm$ noise of
+     $s/s_0 \approx 2$–$3.4\times10^{-8}$ (growing slowly with the matrix
+     size, measured for $n$ = 200–3000). A cut below that, such as the
+     default `svd_min**2` = $10^{-20}$, would keep the positive half of the
+     noise. Then, while `chi_max` does not bind (early times in a quench,
+     small DMRG stages), chi would grow several times beyond what the state
+     needs: for a rank-50 $600\times600$ test matrix it kept 322 directions.
+     The floor (`_EIGH_SCHMIDT_FLOOR` in `dmrg.py`, ~3× above the noise at
+     $n$ = 3000) drops only directions of weight $< 10^{-14}$. Once
+     `chi_max` binds it never matters.
 
 ## Layout
 
